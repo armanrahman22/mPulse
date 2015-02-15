@@ -1,0 +1,22 @@
+$def with (status)
+<div class="hero-unit" style='margin-top: 50px' id='messageBubble'>
+	$if status == 'success':
+		<p> Success! Thank you again for visiting this M-Pulse Station. Stay healthy! <p>
+	$else:
+		<p> Data send failure: $status </p> 
+	<br />
+	<p>The kiosk will restart in 5 seconds...</p>
+	<!--<a class='btn btn-primary btn-large' href='/restart/' onclick='continueAction();'>Restart</a>-->
+</div>
+
+<script type="text/javascript">
+	function continueAction(){
+		$$("#messageBubble").text("Restarting...");
+	}
+	$$(function(){
+		setTimeout(function(){
+			continueAction();
+			window.location = '/restart/';
+		},5000);
+	});
+</script>

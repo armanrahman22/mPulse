@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block extended_title %} - {{ profile_user.username }}{% endblock %} <!-- Extention of title - Starts with M-PULSE -->
+
+{% block content %} <!-- Content for the page -->
+<div id="basicInfo" style="height:200px;">
+<!-- Picture -->
+    <img src="{{ STATIC_URL }}/img/pieChart.jpg" class="img" style="height: 180px;float:left;" />
+    
+<!-- Basic info -->
+    
+<dl class="dl-horizontal" style="float:left"> <!-- nbsp to correct for missing fields -->
+    <dt>Full Name</dt><dd>{{ profile_user.get_full_name }}&nbsp;</dd>
+    <!--<dt>Username</dt><dd>{{ profile_user.username }}&nbsp;</dd>-->
+    <dt>Email</dt><dd>{{ profile_user.email }}&nbsp;</dd>
+
+    <dt>Gender</dt><dd>{{ profile_user.get_profile.gender }}&nbsp;</dd>
+    <dt>Age</dt><dd>{{ userAge }}&nbsp;</dd>
+    <dt>Height</dt><dd>{{ profile_user.get_profile.height }} {% if profile_user.get_profile.height %}ft <a href="#" class="chart-call" role="button" data-width="75%" data-height="50%" data-body="{% url chartHeight %}">(graph)</a>{% endif %}</dd>
+    <dt>Weight</dt><dd>{{ profile_user.get_profile.weight }} {% if profile_user.get_profile.weight %}lbs <a href="#" class="chart-call" role="button" data-width="75%" data-height="50%" data-body="{% url chartWeight %}">(graph)</a>{% endif %}</dd>
+    <dt>BMI</dt><dd>{{ userBMI }} {% if userBMI %} <a href="#" class="chart-call" role="button" data-width="75%" data-height="50%" data-body="{% url chartBMI %}">(graph)</a>{% endif %}</dd>
+</dl>
+</div>
+
+<div id="sessions">
+    <h2>Sessions</h2>
+    <table class="table table-striped">
+        <th>Date</th><th>Kiosk Location</th><th></th>
+        {% for session in sessions %}
+            <tr>
+                <td>{{ session.datetime_taken|date:"D M jS, Y G:i T" }}</td>
+                <td>{{ session.kiosk.location }}</td>
+                <td><a class="btn btn-primary" href="{% url session session.pk %}">View Data</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

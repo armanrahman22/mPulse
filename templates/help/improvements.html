@@ -1,0 +1,10 @@
+<h3>Improvements</h3>
+<p>
+    The following improvements could be made to the M-Pulse Hardware and Software:
+    <ul>
+        <li>Build a better amplification circuit for the load sensors in the scale. The current one relies on a 1000x Op-Amp amplifier that is simple but full of unwanted noise and whose values vary based on differences in resistor manufacturing. (not great)</li>
+        <li>Add a way of saving session data to save or email later in case the kiosk goes offline for some reason. I imagine a good way to do this might be to, if there's an error
+        contacting the website, save the session data JSON files into a folder. Then, have a shell script that runs every once in a while and tries to send them.</li>
+        <li>Add some feedback on the ECG -> look for AF, skipped beats, etc.</li>
+    </ul>
+</p>

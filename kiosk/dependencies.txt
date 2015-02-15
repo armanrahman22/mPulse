@@ -1,0 +1,8 @@
+unzip
+midori
+
+Python + 
+	python-dev
+	json
+	RPi.GPIO
+	pySerial (serial)

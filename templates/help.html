@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block extended_title %} - Help{% endblock %} <!-- Extention of title - Starts with M-PULSE -->
+
+{% block page_head %}
+    <style>
+        .tableDivider{
+            background-color: #F0F0F0;
+        }
+    </style>
+{% endblock %}
+{% block content %} <!-- Content for the page -->
+{% if message %}
+        <div class="alert fade in alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {% autoescape off %}
+                {{ message }}
+            {% endautoescape %}
+        </div>
+{% endif %}
+<div class="tabbable tabs-left">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#help" data-toggle="tab">Site Usage</a></li>
+        {% if request.user.is_authenticated and request.user.isKioskAdmin %}
+            <li><a href="#admin" data-toggle="tab">Admin Site Usage</a></li>
+            <li><a href="#kioskHardware" data-toggle="tab">Kiosk Hardware</a></li>
+            <li><a href="#kioskSoftware" data-toggle="tab">Kiosk Software</a></li>
+            <li><a href="#improvements" data-toggle="tab">Improvements</a></li>
+        {% endif %}
+        <li><a href="#faq" data-toggle="tab">FAQ</a></li>
+        <li><a href="#about" data-toggle="tab">About M-Pulse</a></li>
+        <li><a href="#contact" data-toggle="tab">Contact Us</a></li>
+        {% if request.user.is_authenticated and request.user.is_staff %}
+            <li><a href="#websiteCode" data-toggle="tab">Website Administration</a></li>
+        {% endif %}
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="help">
+            {% include "help/userHelp.html" %}
+        </div>
+        {% if request.user.is_authenticated and request.user.isKioskAdmin %}
+            <div class="tab-pane" id="admin">
+                {% include "help/adminHelp.html" %}
+            </div>
+            <div class="tab-pane" id="kioskHardware">
+                {% include "help/kioskHardware.html" %}
+            </div>
+            <div class="tab-pane" id="kioskSoftware">
+                {% include "help/kioskSoftware.html" %}
+            </div>
+            <div class="tab-pane" id="improvements">
+                {% include "help/improvements.html" %}
+            </div>
+        {% endif %}
+        <div class="tab-pane" id="faq">
+            {% include "help/faq.html" %}
+        </div>
+        <div class="tab-pane" id="about">
+            {% include "help/about.html" %}
+        </div>
+        <div class="tab-pane" id="contact">
+            {% include "help/contact.html" %}
+        </div>
+        {% if request.user.is_authenticated and request.user.is_staff %}
+            <div class="tab-pane" id="websiteCode">
+                    {% include "help/websiteCode.html" %}
+            </div>
+        {% endif %}
+    </div>
+</div> <!-- /tabbable -->
+
+{% endblock %}
+    

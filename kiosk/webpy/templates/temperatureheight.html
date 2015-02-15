@@ -1,0 +1,55 @@
+$def with (retake)
+<div class="hero-unit" style='margin-top: 50px'>
+       <h3>Now let's take your temperature and height</h3>
+       <p>Instructions...
+       </p>
+</div>
+<div id='results' class='hero-unit' style='background-color: white;'>
+	<b>Temperature: </b><span id="tempReading"></span>&deg;F
+</div>
+
+<div class="hero-unit" style='margin-top: 20px' id="moveOnNotice">
+	<p>Click to continue</p><br />
+		<button class='btn btn-primary' onclick='continueAction();'>Move On</button>
+</div>
+<script type="text/javascript">
+
+	//Cleanup for when page is left
+	var t = null;
+	window.onbeforeunload = function() { 
+		if (t != null){
+			clearTimeout(t);
+		}
+		jQuery.ajax({
+        	type: "GET",
+        	url: '/temperatureHeight/?quit=1',
+        	async: false,
+    	});
+	};
+	//Action to take on leaving the page
+	function continueAction(){
+		if ($retake == 1)
+			window.location.replace('/results/');
+		else
+			window.location.replace('/results/'); 
+		$$("#moveOnNotice").text("Advancing...");
+	}
+	
+	//Poll for temperature
+	function updateTemp(){
+		jQuery.get('/readings/temperature/',function(resp){
+				if (resp != -1){
+					$$('#tempReading').text(resp);
+				}
+				setTimeout(updateTemp,1500);
+		});
+	}
+	
+	//on page init
+	$$(function(){
+		updateTemp();
+	});
+	
+	
+	
+</script>

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block extended_title %} - Server Errors {% endblock %} <!-- Extention of title - Starts with M-PULSE -->
+
+{% block content %} <!-- Content for the page -->
+
+<h2>500 - Internal Server Errors</h2>
+<div style="width:100%;height:100%;">
+    <table class='table table-hover' style="float:left;width:12%;" id="errorList">
+        {% for error in errors %}
+            <tr data-error_id={{ error.pk }} class="errorLink">
+                <td>{{ error.time|date:"n/j/y G:i" }}</td>
+                <td><a href="{% url 'deleteError' error.pk %}" onclick="return confirm('Are you sure you wish to delete this error report?');"><i class="icon-trash"></i></a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <iframe style="float:left;width:83%;border-left: thin silver solid;border-top:none;border-bottom:none;border-right:none;height:100%;margin-left:10px;padding-left:10px;" id="errorContent"></iframe>
+        
+    </div>
+</div>
+{% endblock %}
+
+{% block page_js %}
+    <script type="text/javascript">
+        //Attach function to every error table row to open the full html in the specified container div
+        $(".errorLink").click(function(){
+                $('#errorContent').attr('src',"{% url 'getErrorPage' %}?id=" + $(this).data('error_id'));
+        });
+    </script>
+{% endblock %}

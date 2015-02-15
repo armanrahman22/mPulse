@@ -1,0 +1,106 @@
+$def with (sessionData,ecgData)
+
+<div class="hero-unit" style='margin-top: 50px' id='optionsUnit'>
+       <p>Thank you for visiting this M-Pulse Station! If you would like a summary of your results 
+       		emailed to you or saved for future reference, please enter your email, 
+       		select the desired box(es) below and click
+       		continue. Saving your session results online allows you to view or download them again at any
+       		point in the future.
+       	</p>
+		<form action='/postSession/' method='get' class='form-inline'>
+			<input class="span3" name="email" type="email" placeholder="Email..." required /><br />
+			<label class="checkbox"><input type="checkbox" name="action" value="email"> Email Me Results</label><br />
+			<label class="checkbox"><input type="checkbox" name="action" value="save" checked='true'> Save Results</label> <br /><br />
+			<a href='/restart/' class='btn btn-danger'>No thanks, end session now</a>
+			<input type='submit' class='btn btn-primary' value='Continue' onclick='showLoader()' />
+		</form>
+			
+</div>
+<div class="hero-unit" style='margin-top:50px;display:none;' id='loaderUnit'>
+<img src="../static/img/longBlueLoader.gif" />
+</div>
+<hr style='margin=20px' />
+
+<h3>Preview of Today's M-Pulse Kiosk Session Results</h3>
+<div class="btn-group">
+	<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+		Retake Reading
+		<span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+		<li><a href='/ecg/?retake=1'>ECG / Pulse Rate</a></li>
+		<li><a onclick='retakeWeight()'>Weight</a></li>
+		<!--<li><a href='/temperatureHeight/?retake=1'>Temperature / Height</a></li>-->
+	</ul>
+</div>
+<div style="margin-top:10px">
+$for item in sessionData
+    <b>$item[0]: </b><span id="$item[0]">$item[1]</span>$item[2]<br />
+</div>
+<b>ECG Graph: </b><br /><br />
+
+<div id="ecgChart" style="height:300px; width:100%;margin: 0 auto;display:none;"></div>
+<div id="ecgWait" style="height:300px; width:100%;padding:20px;display:inline;"><img src="../static/img/ecgLoader.gif" /></div>
+
+
+
+<script type="text/javascript">
+	function showLoader(){
+		$$('#optionsUnit').hide()
+		$$('#loaderUnit').show()
+	}
+	function retakeWeight(){
+		$$('#Weight').html('<img src="../static/img/shortBlackLoader.gif" />');
+		jQuery.get('/readings/scale/?store=1',function(resp){
+				$$('#Weight').text(resp);
+		});
+	}
+	$$(function(){
+		retakeWeight(); //Take weight at the start
+		if ($ecgData != 0){
+			//ECG chart
+			var series = [$ecgData];
+			var ecgPlot = $$.jqplot ('ecgChart', series,{
+				axes: {
+						xaxis: {
+								pad:0
+						},
+						yaxis: {
+								tickOptions:{
+									show: false
+								}
+						}
+				},
+				axesDefaults: {
+						tickOptions: {
+								showGridline: false,
+								showMark: true
+						},
+						showTickMarks: false
+				},
+				seriesDefaults: {
+						showMarker: false,
+						color: '#FF5C5C'
+				},
+				grid: {
+						background: '#FFFFFF',
+						borderColor: '#FFFFFF',
+						shadow: false
+				}
+			});
+			
+			//Show chart after 1 second
+			setTimeout(function(){
+				$$('#ecgWait').hide();
+				$$('#ecgChart').show();
+				ecgPlot.replot();
+			},1000);
+		}
+		else{
+			setTimeout(function(){
+				$$('#ecgWait').text('No ECG Data to Display');
+			},1000);
+		}
+	
+	});
+</script>

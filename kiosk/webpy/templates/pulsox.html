@@ -1,0 +1,132 @@
+$def with (retake)
+<div class="hero-unit" style='margin-top: 50px'>
+       <h3>Welcome to M-PULSE! Let's start with pulse and blood oxygen</h3>
+       <p>Go to the blinking blue panel, place your finger in the black pulse clip and press the button on top. The panel will begin to pulse at the same rate as your heart. 
+       	The reading could take a bit of time to complete, so please be patient. Also, this sensor will not work with certain types of nail polish.<p>
+</div>
+<div class="hero-unit" style='background-color: white;'>
+	<!--<b>Skin Temperature:</b> <button class='btn btn-large' id="tempDisp">---</button> F<br /> -->
+	<b>Pulse:</b> <button class='btn btn-large' id="pulseDisp"><img src="../static/img/pulsoxLoader.gif" /></button> (BPM)</br>
+	<b>Oxygen Saturation:</b> <button class='btn btn-large' id="o2Disp"><img src="../static/img/pulsoxLoader.gif" /></button> (%SpO2)</br>
+</div>
+<div class="hero-unit" id='moveOnNotice'>
+	<p>You will be taken to the second station automatically after a succesful pulse reading.
+	If you're having trouble getting a reading, press the button below to continue manually.</p><br />
+	$if retake == 1:
+		<a href='/results/' class='btn btn-primary' onclick='continueAction();'>Move On</a>
+	$else:
+		<a href='/ecg/' class='btn btn-primary' onclick='continueAction();'>Move On</a>
+</div>
+<script type="text/javascript">
+	//Cleanup for when page is left
+	var t = null;
+	window.onbeforeunload = function() { 
+		if (t != null){
+			clearTimeout(t);
+		}
+		jQuery.ajax({
+			type: "GET",
+        	url: '/pulsox/?quit=1',
+        	async: false,
+    	});
+	};
+	function continueAction(){
+		$$("#moveOnNotice").text("Advancing...");
+	}
+	
+	//Functions that update the temperature and pulse readings
+	//After 3 non-zero pulse readings, the page will redirect to ecg
+	var readingCount = 0;
+	var interval = 1500;
+	var blueELPanel = 22;
+	var oldBPM = 0;
+	var resetCount=0;
+	$$(function(){
+		updatePulsox();
+// 		setInterval(function(){
+// 			jQuery.get('/readings/temperature/',function(data){
+// 				if (data != 'None'){
+// 					//Set value in display
+// 					var f = parseFloat(data) * (9/5.0) + 32;
+// 					$$("#tempDisp").text(f.toFixed(2));
+// 				}
+// 			});
+// 
+// 		},interval);
+//		setTimeout(function(){
+// 		setInterval(function(){
+// 			jQuery.get('/readings/pulsox',function(data){
+// 				if (data != 'None'){
+// 					//Set values in the display
+// 					var p = data.split(",");
+// 					$$("#pulseDisp").text(p[0]);
+// 					$$("#o2Disp").text(p[1]);
+// 					
+// 					//Change blink speed to match pulse
+// 					var bpm = parseFloat(p[0]);
+// 					if (bpm != null && bpm != 0){
+// 						if (readingCount >= 3){
+// 							window.location.replace('/ecg/'); 
+// 						}
+// 						readingCount++;
+// 					}
+// 					else{
+// 						resetCount += 1;
+// 					}
+// 					if (bpm != 0 && Math.abs(bpm - oldBPM) > 3){
+// 						jQuery.get('/blinkControl/?pin='+blueELPanel+'&sec='+30/bpm);
+// 						oldBPM = bpm;
+// 					}
+// 				}
+// 				else{
+// 					resetCount += 1;
+// 				}
+// 				if (resetCount > 20){
+// 					window.location.replace('/restart/'); 
+// 				}
+// 
+// 			});
+// 		},interval);}
+//		, interval / 2);
+	});
+	function updatePulsox(){
+		jQuery.get('/readings/pulsox/',function(data){
+			if (data != 'None'){
+				//Set values in the display
+				var p = data.split(",");
+				if (p[0] != '0')
+					$$("#pulseDisp").text(p[0]);
+				if (p[1] != '0')
+					$$("#o2Disp").text(p[1]);
+				
+				//Change blink speed to match pulse
+				var bpm = parseFloat(p[0]);
+				if (bpm != null && bpm != 0){
+					if (readingCount >= 3){
+						$$("#moveOnNotice").text("Advancing...");
+						if ($retake == 1)
+							window.location.replace('/results/');
+						else
+							window.location.replace('/ecg/'); 
+					}
+					readingCount++;
+				}
+				else{
+					resetCount += 1;
+				}
+				if (bpm != 0 && Math.abs(bpm - oldBPM) > 3){
+					jQuery.get('/blinkControl/?pin='+blueELPanel+'&sec='+30/bpm);
+					oldBPM = bpm;
+				}
+			}
+			else{
+				resetCount += 1;
+			}
+			if (resetCount > 80){
+				window.location.replace('/restart/'); 
+			}
+
+		});
+		t = setTimeout(updatePulsox,interval);
+	}
+</script>

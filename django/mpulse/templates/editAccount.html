@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block extended_title %}{% endblock %} <!-- Extention of title - Starts with M-PULSE -->
+
+{% block page_head %}
+    <style type="text/css">
+      .errorlist{list-style-type:none; margin-left: 0px;}
+    </style>
+{% endblock %}
+{% block content %} <!-- Content for the page -->
+<h3>Edit Account</h3>
+<form action="{% url edit_account %}" method="post" class="form-horizontal">
+    {% csrf_token %}
+    <fieldset>
+        {% for field in userForm %}
+        <div class="control-group {% if field.errors %}error{% endif %}" {% if field.label == 'Username' or field.label == 'Password' %} style='display:none;' {% endif %}>
+
+            <label class="control-label" for="{{ field.html_name }}" style="text-align:left;">{{ field.label }}</label>
+            <div class="controls">
+                {{ field }}
+                {% if field.errors %}
+                    <span class="help-inline">{{ field.errors }}</span>
+                {% endif %}
+                
+            </div>
+        </div>
+        {% endfor %}
+        {% for field in userProfileForm %}
+        <div class="control-group {% if field.errors %}error{% endif %}">
+            <label class="control-label" for="{{ field.html_name }}" style="text-align:left;">{{ field.label }}</label>
+            <div class="controls">
+                {{ field }}
+                <span class="help-inline" style="font-size: 9pt;">
+                    {% if field.errors %}
+                        {{ field.errors }}
+                    {% elif field.label == 'Birthdate' %}
+                        (MM/DD/YYYY)
+                    {% elif field.label == 'Height' %}
+                        (feet)
+                    {% elif field.label == 'Weight' %}
+                        (lbs)
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+        {% endfor %}
+
+    </fieldset>
+    <input type="submit" value="Edit Account" class="btn btn-primary btn-medium" id="createAccountSubmit" />
+</form>
+
+{% endblock %}

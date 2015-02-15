@@ -1,0 +1,6 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=kiosk
+Comment=Midori Kiosk Mode
+Exec=/usr/local/kiosk/startKiosk.sh
+Type=Application

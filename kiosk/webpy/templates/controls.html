@@ -1,0 +1,24 @@
+<div class="hero-unit">
+        <button class='btn btn-success btn-large' onclick='controlOutput(11,0);'>Yellow LED On</button>
+        <button class='btn btn-danger btn-large' onclick='controlOutput(11,1);'>Yellow LED Off</button>
+        
+</div>
+
+<div class="hero-unit">
+        <button class='btn btn-success btn-large' onclick='controlBlink(22,0);'>EL On</button>
+        <button class='btn btn-primary btn-large' onclick='controlBlink(22,0.5);'>EL Blink</button>
+        <button class='btn btn-danger btn-large' onclick='controlBlink(22,-1);'>EL Off</button>
+        
+</div>
+<!--
+<div class="hero-unit">
+        <button class='btn btn-success btn-large' onclick='controlAMOutput(13,0);'>Red LED On</button>
+        <button class='btn btn-danger btn-large' onclick='controlAMOutput(13,1);'>Red LED Off</button>
+</div>
+-->
+<div class="hero-unit">
+        <button id="startPot" class='btn btn-primary btn-large'>Read Potentiometer Input </button>
+		<button class='btn btn-large' id="potDisp">---</button>
+		<button id="stopPot" class='btn btn-danger btn-large'>Stop</button>
+		<!-- onclick='readAMAnalogInput(0,"#potDisp");' -->
+</div>

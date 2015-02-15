@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block extended_title %}{% endblock %} <!-- Extention of title - Starts with M-PULSE -->
+
+{% block content %} <!-- Content for the page -->
+<div id="wrapper">
+    <h1>Super Simple Lightbox</h1>
+    <p>Our super simple lightbox demo. Here are the image links:
+        <ul>
+            <li>
+                <a href="https://farm7.static.flickr.com/6130/5935338876_47b61c93a5.jpg" class="lightbox_trigger">
+                Picture 1
+                </a>
+            </li>
+            <li>
+                <a href="https://farm7.static.flickr.com/6020/5924329054_4bdc419c3a_o.jpg" class="lightbox_trigger">
+                Picture 2
+                </a>
+            </li>
+            <li>
+                <a href="https://farm7.static.flickr.com/6020/5931933181_ddb737e528.jpg" class="lightbox_trigger">
+                Picture 3
+                </a>
+            </li>
+        </ul>
+     </p>
+    
+    <div class="lightbox">
+    <p>Click to close</p>
+    <div id="body">
+        <h2>header</h2>
+    </div>
+    </div>
+</div> <!-- #/wrapper -->
+
+
+{% endblock %}

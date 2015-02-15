@@ -1,0 +1,201 @@
+$def with (retake)
+<div class="hero-unit" style='margin-top: 50px'>
+       <h3>Let's take an ECG (Electro-Cardiogram)!</h3>
+       <p>Go to the lit red bar and grab it with both hands. Your ECG should appear on the screen within a few seconds. Be sure to make good contact between your skin and the copper, but don't
+       squeeze the bar hard. If you squeeze too hard, the sensor will pick up on the electrical signals from your muscles as well as from your heart.
+       <br /><br />
+       When you have a good reading on the display, release the bar to save it.
+       <!--
+       <span style='font-weight:bold;'>Please
+       wait for 6 graph cycles of good readings before saving.</span> 
+       -->
+       <span style='text-decoration:underline;' onclick='showHelp()'>
+       What's a good reading?
+       </span>
+       </p>
+      <!--
+      <div style='font-size: 14; background-color: white; padding:10px;border-radius: 5px;width:200px;display:none;' id='graphCyclesDiv'>
+		Graph Cycles: <span  id="graphCycles">0</span>
+	  </div>
+	  -->
+</div>
+<div id='goodECG' style='display:none;background-color: white; width:200px; padding:10px; border: #0045CC thin solid;position:absolute;left:50%;top:275px;'>
+		Sample ECG reading: <br /><br />
+		<img src="../static/img/goodECG.png" width='200px' /><br /><br />
+		Yours may not look identical to this, but you should see distinguishable peaks at regular intervals.
+		<br /><br />
+		<span style='text-decoration: underline;float:right;' onclick='hideHelp()'>(close)</span>
+</div>
+<!--<div id="ecgChart" style="height:300px; width:100%;margin: 0 auto;"></div>-->
+<canvas id="ecgChart" width="1150" height="300" style="display:none;"></canvas>
+<div id="ecgWait" style="height:300px; width:100%;padding:20px;display:inline;"><img src="../static/img/ecgLoader.gif" /></div>
+
+<!--<hr style="color:#eeeeee;margin-top:20px;height:2px;border:none;" />-->
+<div class="hero-unit" style='margin-top: 20px' id="moveOnNotice">
+	<p>You will be automatically redirected to the next screen when you put the copper balls down. If 
+		this doesn't happen, wait until you get a good reading on the screen and then click below 
+		to continue manually.</p><br />
+		<button class='btn btn-primary' onclick='continueAction();'>Move On</button>
+</div>
+<script type="text/javascript">
+
+	//Cleanup for when page is left
+	var t = null;
+	window.onbeforeunload = function() { 
+		if (t != null){
+			clearTimeout(t);
+		}
+		jQuery.ajax({
+        	type: "GET",
+        	url: '/ecg/?quit=1',
+        	async: false,
+    	});
+	};
+	//Action to take on leaving the page
+	function continueAction(){
+		if ($retake == 1)
+			window.location.replace('/results/');
+		else
+			window.location.replace('/results/'); 
+		$$("#moveOnNotice").text("Advancing...");
+	}
+	//Showing / hiding help
+	function showHelp(){
+		$$("#goodECG").show();
+	}
+	function hideHelp(){
+		$$("#goodECG").hide();
+	}
+	//graphCycles var
+	//var graphCycles = 0;
+	
+	
+	//plot variables
+	var series = [[[0,0]]];
+	var ecgPlot;
+	var ecgDataLine;
+	//var socket;
+	var ecgShowing = false;
+	
+	//on page init
+	(function(){
+	
+		//Make smoothie chart for ecg
+		ecgPlot = new SmoothieChart({
+			  minValue: 0.5,
+			  maxValue: 3.5,
+			  millisPerPixel: 8,
+			  interpolation: 'linear',
+			  grid: { strokeStyle:'none', fillStyle:'rgb(255, 255, 255)',
+					  lineWidth: 1, millisPerLine: 250, verticalSections: 6, },
+			  labels: { fillStyle:'#FF5C5C' }
+		});
+		ecgPlot.streamTo(document.getElementById("ecgChart"),2000);
+		
+		// Data
+		ecgDataLine = new TimeSeries();
+		
+		// Add to SmoothieChart
+		ecgPlot.addTimeSeries(ecgDataLine,
+  			{ strokeStyle:'#FF5C5C', fillStyle:'none', lineWidth:2 }
+  		);
+
+
+		
+		//ECG graph Vars
+// 		ecgPlot = $$.jqplot ('ecgChart', series,{
+//         
+// 			axes: {
+// 				xaxis: {
+// 					pad:0
+// 				}//,
+// //				yaxis: {
+// //					min: 0,
+// //					max: 3
+// //				}
+// 			},
+// 			axesDefaults: {
+// 				tickOptions: {
+// 					show: false
+// 				}
+// 			},
+// 			seriesDefaults: {
+// 				showMarker: false,
+// 				color: '#FF5C5C'
+// 			},
+// 			grid: {
+// 				background: '#FFFFFF',
+// 				borderColor: '#FFFFFF',
+// 				shadow: false
+// 			}
+// 		});
+		checkForPickUp();
+		//updateECG();
+	})();
+	function checkForPickUp(){
+		jQuery.get('/readings/ecg/?started=0',function(resp){
+				if (resp != 'False'){
+					ecgShowing = true;
+					$$('#ecgWait').text('Loading...');
+					setTimeout(function(){
+						$$('#ecgWait').hide();
+						$$('#ecgChart').show();
+						graphCycles = 0;
+						$$("#graphCycles").text(graphCycles);
+						$$('#graphCyclesDiv').show();
+					},3000);
+					updateECG();
+				}
+				else
+					setTimeout(checkForPickUp,1000);
+		});
+	}
+	function updateECG(){
+		jQuery.get('/readings/ecg/?started=1',function(ecg){
+			if (ecg == 'Done'){
+				continueAction();
+				//window.location = '/results/';
+			}
+			else if (ecg == 'resync'){
+				$$('#ecgWait').text('Resyncing...');
+				$$('#ecgChart').hide();
+				$$('#ecgWait').show();
+				graphCycles = 0;
+				setTimeout(function(){
+					$$('#ecgWait').hide();
+					$$('#ecgChart').show();
+					graphCycles = 0;
+					updateECG();
+				},1000);
+			}
+			else{
+				if (ecg != 'None'){
+					//try{
+					var vals = eval(ecg);
+					//if (series[0].length > vals.length && series[0].length > 300){
+					//	series[0].splice(0,vals.length);
+					//}
+					//series[0] = series[0].concat(vals);
+					//series[0].push(vals);
+
+					//series[0] = vals;
+					//ecgPlot.resetAxesScale();
+					//ecgPlot.replot({data:series});
+					//}
+					//catch(err){
+	
+					//}
+					for (var i=0; i<vals.length; i++)
+		  				ecgDataLine.append(vals[i][0], vals[i][1]);
+		  	
+					//graphCycles++;
+					//if (graphCycles == 7){
+					//	graphCycles = 1;
+					//}
+					//$$("#graphCycles").text(graphCycles);
+				}
+				t = setTimeout(updateECG,1000);
+			}
+		});
+	}
+</script>

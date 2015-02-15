@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block extended_title %} - Register Kiosk{% endblock %} <!-- Extention of title - Starts with M-PULSE -->
+
+{% block content %} <!-- Content for the page -->
+<h3>Register a Kiosk</h3>
+<form action="{% url 'registerKiosk' %}" method="post" class="form-horizontal">
+    {% csrf_token %}
+    <fieldset>
+        {% for field in registrationForm %}
+        <div class="control-group {% if field.errors %}error{% endif %}">
+            <label class="control-label" for="{{ field.html_name }}" style="text-align:left;font-weight:bold;">{{ field.label }}</label>
+            <div class="controls">
+                {{ field }}
+                {% if field.errors %}
+                    <span class="help-inline">{{ field.errors }}</span>
+                {% endif %}
+                
+            </div>
+        </div>
+        {% endfor %}
+
+    </fieldset>
+    <input type="submit" value="Register Kiosk" class="btn btn-primary btn-medium" />
+</form>
+
+{% endblock %}

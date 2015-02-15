@@ -1,0 +1,35 @@
+<div class="hero-unit" id="welcomeBubble">
+       <h2 id="doorMonitor">Waiting for someone to come...</h2><br />
+       Step onto the white footprints. If after a few seconds nothing happens, click below.<br /><br />
+       <button id="continueButton" class='btn btn-primary btn-large' onclick='continueAction();'>I'm here!</button>
+</div>
+<script type="text/javascript">
+	//Cleanup for when page is left
+	window.onbeforeunload = function() { 
+		jQuery.ajax({
+        	type: "GET",
+        	url: '/index/?quit=1',
+        	async: false,
+    	});
+	};
+	//Action to take on leaving the page
+	function continueAction(){
+		$$("#welcomeBubble").text("Welcome to M-PULSE! Starting...");
+		window.location = '/ecg/';
+	}
+	//Long-poll function that should only return when the doorMonitor sensor has been triggered
+	function monitorDoor(){
+		jQuery.get('/doorMonitor/',function(data){
+			if (data == 'True'){
+				continueAction();
+			}
+			else{
+				monitorDoor();
+			}
+		});
+	}
+	//On page start
+	$$(function(){
+		monitorDoor();
+	});
+</script>

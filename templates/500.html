@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block extended_title %} - 500 Internal Server Error{% endblock %} <!-- Extention of title - Starts with M-PULSE -->
+
+{% block content %} <!-- Content for the page -->
+
+<img src="{{ STATIC_URL }}img/500.png" style="width:100%" alt="Internal Server Error" />
+
+<p style="text-align:right;position:relative;top:-20px;">
+*This error has been reported in our system and will be corrected as soon as possible
+</p>
+
+{% endblock %}

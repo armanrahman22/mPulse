@@ -1,0 +1,165 @@
+<div class="tabbable tabs-left">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#general" data-toggle="tab">General</a></li>
+      <li><a href="#features" data-toggle="tab">Shield Features</a></li>
+      <li><a href="#pins" data-toggle="tab">Default Shield Pin Connections</a></li>
+      <li><a href="#eagle" data-toggle="tab">Schematics / EAGLE Files</a></li>
+      <li><a href="#sensors" data-toggle="tab">Sensors</a></li>
+      <li><a href="#structure" data-toggle="tab">Structure</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="general">
+        <h3>General</h3>
+        The hardware interface for an M-Pulse kiosk consists of the following items<br /><br />
+        <table class='table'>
+            <th>Item</th><th>Source Option(s)</th>
+            <tr><td>Raspberry Pi Revision 2 Board + SD card with Raspian</td><td></td></tr>
+            <tr><td>Micro USB B Wall Adapter</td><td></td></tr>
+            <tr><td>Keyboard / Mouse</td><td></td></tr>
+            <tr><td>HDMI Monitor (or DVI monitor + adapter)</td><td></td></tr>
+            <tr><td>M-Pulse Raspberry Pi Shield</td><td>See <b>Schematics / EAGLE Files</b></td></tr>
+            <tr><td>Mini USB B Wall Adapter</td><td></td></tr>
+            <tr><td>Sensors + Wiring</td><td>See <b>Sensors</b></td></tr>
+            <tr><td>Kiosk Structure</td><td>See <b>Structure</b></td></tr>  
+        </table>
+      </div>
+      <div class="tab-pane" id="features">
+        <h3>Features</h3>
+        The M-Pulse Shield consists of the following<br />
+        <ul>
+            <li>Power circuitry for use with an external power supply or supply from Raspberry Pi</li>
+            <li>2 x Power Indicator LEDs</li>
+            <li>ECG amplifier / filter circuit with screw terminal inputs</li>
+            <li>Load Sensor amplifier circuit with screw terminal inputs</li>
+            <li>Circuit for SMBUS / I2C IR Temperature sensor with screw terminal inputs/outputs</li>
+            <li>Conductance / touch sensor for ECG leads boken out to screw terminals</li>
+            <li>3 x 3.3V screw terminal power outputs</li>
+            <li>2 x 5V screw terminal power outputs</li>
+            <li>19 x General Digital I/O pins broken out to screw terminals (16 from expander, 3 from Raspi)</li>
+            <li>3 x Analog inputs broken out to female headers</li>
+            <li>1 x General Purpose Rail-to-Rail Op-Amp broken out to female headers</li>
+            <li>1 x 3-Input screw terminal connected to 1x3 female headers (can jump to analog inputs or to op-amp)</li>
+        </ul>
+        <b>*Make sure when you assemble your shield, that you put electrical tape or some other insulating material under the pins that stick out near the USB hub on the Raspberry Pi.
+        The USB hub is connected to ground, so if one of the I/O pins on the screw terminals is brought high, it will short if the pins are touching the USB hub.</b>
+        <h3>I/O Expander Pin Mappings</h3>
+        The I/O expander screw terminals map to pin numbers according to the following diagram. (A side is a bit strange)
+        
+        A5 | <br />
+        A6 | <br />
+        A7 | <br />
+        A4 | <br />
+        A3 | <br />
+        A2 | <br />
+        A1 | <br />
+        A0 | <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  __ &nbsp;__ &nbsp;__ &nbsp;__ &nbsp;__ &nbsp;__ &nbsp;__ &nbsp;__ <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  B0 B1 B2 B3 B4 B5 B6 B7
+      </div>
+      <div class="tab-pane" id="pins">
+        <h4>Default BCM GPIO pin connections on the M-Pulse Shield</h4>
+        <table class='table'>
+            <th>Pin</th><th>Function</th>
+            <tr><td>4</td><td>Broken out to Screw Terminal</td></tr>
+            <tr><td>7</td><td>SPI Chip Select - I/O Expander</td></tr>
+            <tr><td>8</td><td>SPI Chip Select - ADC</td></tr>
+            <tr><td>9</td><td>SPI MISO</td></tr>
+            <tr><td>10</td><td>SPI MOSI</td></tr>
+            <tr><td>11</td><td>SPI SCLK</td></tr>
+            <tr><td>17</td><td>I/O Expander Interupt B (INTB)</td></tr>
+            <tr><td>18</td><td>IR Sensor I2C SCL</td></tr>
+            <tr><td>22</td><td>Broken out to Screw Terminal</td></tr>
+            <tr><td>23</td><td>IR Sensor I2C SDA</td></tr>
+            <tr><td>24</td><td>Broken out to Screw Terminal</td></tr>
+            <tr><td>25</td><td>ECG Electrode Sensor</td></tr>
+            <tr><td>27</td><td>I/O Expander Interupt A (INTA)</td></tr>
+        </table>
+        
+        <h4>Default ADC pin connections on the M-Pulse Shield</h4>
+        <table class='table'>
+            <th>ADC Input</th><th>Function</th>
+            <tr><td>0</td><td>Scale Input #1</td></tr>
+            <tr><td>1</td><td>Scale Input #2</td></tr>
+            <tr><td>2</td><td>Scale Input #3</td></tr>
+            <tr><td>3</td><td>Scale Input #4</td></tr>
+            <tr><td>4</td><td>Broken out to Female Header</td></tr>
+            <tr><td>5</td><td>Broken out to Female Header</td></tr>
+            <tr><td>6</td><td>Broken out to Female Header</td></tr>
+            <tr><td>7</td><td>ECG Input</td></tr>
+            
+        </table>
+        
+      </div>
+      <div class="tab-pane" id="eagle">
+        <h3>Schematics</h3>
+        <div id="myCarousel" class="carousel">
+                <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                  <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <img src="{{ STATIC_URL }}private/ecgCircuit.png" alt="">
+                    <div class="carousel-caption">
+                      <h4>ECG Amplifier / Filter Circuit</h4>
+                    </div>
+                  </div>
+                  <div class="item">
+                     <img src="{{ STATIC_URL }}private/scaleCircuit.png" alt="">
+                    <div class="carousel-caption">
+                      <h4>Scale Amplifier Circuit</h4>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <img src="{{ STATIC_URL }}private/fullCircuit.png" alt="">
+                    <div class="carousel-caption">
+                      <h4>Full Schematic</h4>
+                    </div>
+                  </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+        </div>
+      <a href="{% url 'downloadPrivateFile' 'shieldPartsList.pdf' %}">Full Parts List</a><br />
+      <h3>EAGLE Files</h3>
+      <a href="{% url 'downloadPrivateFile' 'EagleFiles.zip' %}">Download Eagle Files V2 (8/21/2013)</a><br />
+      <a href="{% url 'downloadPrivateFile' 'GerberFiles.zip' %}">Download Gerber Files V2 (8/21/2013)</a>
+      </div>
+      <div class="tab-pane" id="sensors">
+        <h3>ECG / Pulse Rate</h3>
+	The current interface is comprised of the following:<br />
+        <ul>
+	<li>A PVC pipe (2 in diameter, 1.5 ft long).</li>
+	<li>Copper tape to be used as leads. 
+	<ul>
+	<li>The left most lead is the negative input.</li>
+	<li>The two on the right are for positive and reference voltage.</li>
+	<li>The strip immediately to the right of the negative input is part of a conduction sensor that detects when the ECG is being used.</li>
+	</ul>
+	<li>An IR temperature sensor which is imbedded between leads and reads skin temperature from the user's palm.</li>
+	</ul><br />
+	See schematics section for the ECG and conduction sensor circuits.<br /><br />
+	Additional information:<br />
+	For future iterations or improvements on this interface, here is information about past trials and their advantages and disadvantages.<br/>
+	<table class='table'>
+            <th>Type</th><th>Pro</th><th>Con</th>
+            <tr><td>PVC Handles</td><td>Sturdy, ergonomic, and reliable signal. Use is intuitive.</td><td>Looks like Scientology E-Meter handels.</td></tr>
+	<tr><td>Flat Panel</td><td>Interesting design and easy to modify.</td><td>Actual palms are not flat and users do not know how much pressure to apply making signal unreliable.</td></tr>
+	<tr><td>Hackey Sacks</td><td>Ergonomic and intuitive. Signal is strong.</td><td>Conductive fabric loses conductivity over time and becomes unreliable.</td></tr>
+	<tr><td>PVC Bar</td><td>Sturdy, ergonomic, and has a reliable signal.</td><td></td></tr>
+        </table>
+        <h3>IR Temperature Sensor</h3>
+        We have embedded a high-precision IR temperature sensor into the ECG bar structure. The temperature sensor is made by Melexis and has part number MLX90614.
+	The sensor communicates to the Raspberry Pi via bit-banged I2C / SMBus.
+	<h3>Scale</h3>
+	The scale is embedded into the floor of the structure and also functions to alert the kiosk to the arrival of a user. The scale we used is a Cuisaid scale from Amazon:
+        <a href="http://www.amazon.com/Cuisaid-ProDigital-AccuWeigh-Technology-Tempered/dp/B009G27M1I" target="_blank">http://www.amazon.com/Cuisaid-ProDigital-AccuWeigh-Technology-Tempered/dp/B009G27M1I</a>. To integrate it into the kiosk we ripped out all of its electronics and attached its load sensors to our amplification circuit (see schematic).
+        This amplification circuit isn't really the best, so we also did a bit of averaging in software (see improvements). 
+      </div>
+      <div class="tab-pane" id="structure">
+        <h3>Design</h3>
+        <h3>Construction</h3>
+      </div>
+    </div>
+</div> <!-- /tabbable -->

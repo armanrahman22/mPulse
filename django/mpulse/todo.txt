@@ -1,0 +1,36 @@
+Raspi
+		
+	set up real-time-clock with ala mode (need a battery)
+	
+	kiosk mode
+	
+	make sure things that get turned on on page entry get turned off on page leave (make exit method called from jquery)
+		ECG (walkthrough2)
+		EL light (walkthrough1)
+	
+	ECG
+		toggle var for ecg reading/not reading so /readings/ecg doesn't hang
+		Time the # of updates with how often we update so it doesn't get so far behind
+			also periodically clear / reset the whole thing
+			(could reduce samples to every other or put a delay in the alamode code)
+			
+		Need to display longer periods of time (3 seconds)
+			
+		Investigate analog-reading alternatives to having the raspi sample so quickly
+	
+Site
+	Account creation: handling feet / inches
+	Edit account
+	Delete account (on profile page)
+	
+	Change graphs to other library rather that using google's API
+	
+Show
+	Get the plasticy stuff from other room and try out some lights / smd soldering stuff
+	
+
+
+Hardware demo
+
+
+

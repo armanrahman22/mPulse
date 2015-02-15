@@ -1,0 +1,200 @@
+
+2013-08-16@18:03:05: IP Post Error: Verification failure.
+2013-08-16@18:03:22: IP Post Error: Verification failure.
+
+2013-08-16@18:04:51: Posted IP and Log File Successfully
+
+2013-08-16@18:05:11: Posted IP and Log File Successfully
+
+2013-08-16@18:05:13: Posted IP and Log File Successfully
+2013-08-16@17:33:16: IP Post Error: likely not connected to the internet
+
+2013-08-19@13:09:11: Posted IP and Log File Successfully
+
+2013-08-19@14:00:06: Posted IP and Log File Successfully
+
+2013-08-19@16:00:04: Posted IP and Log File Successfully
+
+2013-08-19@18:00:04: Posted IP and Log File Successfully
+
+2013-08-19@20:00:04: Posted IP and Log File Successfully
+
+2013-08-19@22:00:04: Posted IP and Log File Successfully
+2013-08-16@17:33:15: IP Post Error: likely not connected to the internet
+
+2013-08-20@10:51:14: Posted IP and Log File Successfully
+
+2013-08-20@12:00:03: Posted IP and Log File Successfully
+
+2013-08-20@14:00:03: Posted IP and Log File Successfully
+
+2013-08-20@16:00:09: Posted IP and Log File Successfully
+2013-08-20@17:25:25: Auto-updating kiosk code
+2013-08-20@17:28:18: Auto-updating kiosk code
+2013-08-20@17:28:59: Auto-updating kiosk code
+2013-08-20@17:30:11: Auto-updating kiosk code
+2013-08-20@17:35:43: Auto-updating kiosk code
+2013-08-20@17:39:19: Auto-updating kiosk code
+2013-08-20@17:51:59: Auto-updating kiosk code
+
+2013-08-20@18:00:02: Posted IP and Log File Successfully
+2013-08-20@18:09:03: IP Post Error: likely not connected to the internet
+
+2013-08-21@12:25:01: Posted IP and Log File Successfully
+
+2013-08-21@14:00:05: Posted IP and Log File Successfully
+
+2013-08-21@16:00:03: Posted IP and Log File Successfully
+2013-08-21@16:52:02: IP Post Error: likely not connected to the internet
+
+2013-08-21@16:52:16: Posted IP and Log File Successfully
+
+2013-08-23@14:00:03: Posted IP and Log File Successfully
+
+2013-08-23@16:00:04: Posted IP and Log File Successfully
+2013-08-23@16:04:11: IP Post Error: likely not connected to the internet
+
+2013-08-27@11:17:36: Posted IP and Log File Successfully
+2013-08-27@11:48:25: Auto-updating kiosk code
+
+2013-08-27@12:00:02: Posted IP and Log File Successfully
+2013-08-27@13:36:44: IP Post Error: likely not connected to the internet
+
+2013-08-27@14:00:03: Posted IP and Log File Successfully
+
+2013-08-27@14:06:21: Posted IP and Log File Successfully
+2013-08-27@15:51:36: Auto-updating kiosk code
+2013-08-27@15:55:50: IP Post Error: likely not connected to the internet
+2013-08-27@15:58:56: IP Post Error: likely not connected to the internet
+
+2013-08-27@16:00:21: Posted IP and Log File Successfully
+
+2013-08-27@18:00:03: Posted IP and Log File Successfully
+
+2013-08-27@18:10:59: Posted IP and Log File Successfully
+2013-08-27@18:19:34: Auto-updating kiosk code
+
+2013-08-27@18:21:50: Posted IP and Log File Successfully
+
+2013-08-27@18:38:39: Posted IP and Log File Successfully
+
+2013-08-27@18:44:02: Posted IP and Log File Successfully
+
+2013-08-27@18:45:03: Posted IP and Log File Successfully
+
+2013-08-27@18:56:24: Posted IP and Log File Successfully
+
+2013-08-27@19:01:34: Posted IP and Log File Successfully
+
+2013-08-27@19:14:16: Posted IP and Log File Successfully
+
+2013-08-27@20:00:03: Posted IP and Log File Successfully
+
+2013-08-27@20:07:17: Posted IP and Log File Successfully
+
+2013-08-27@20:12:14: Posted IP and Log File Successfully
+
+2013-08-27@20:19:05: Posted IP and Log File Successfully
+
+2013-08-27@20:21:55: Posted IP and Log File Successfully
+
+2013-08-27@20:32:20: Posted IP and Log File Successfully
+
+2013-08-27@20:36:44: Posted IP and Log File Successfully
+
+2013-08-27@20:42:04: Posted IP and Log File Successfully
+
+2013-08-27@20:44:39: Posted IP and Log File Successfully
+
+2013-08-27@20:46:11: Posted IP and Log File Successfully
+
+2013-08-27@20:50:48: Posted IP and Log File Successfully
+
+2013-08-27@20:50:48: Posted IP and Log File Successfully
+2013-08-27@20:58:23: IP Post Error: Verification failure.
+2013-08-27@21:00:48: IP Post Error: Verification failure.
+
+2013-08-27@21:01:37: Posted IP and Log File Successfully
+
+2013-08-27@21:08:04: Posted IP and Log File Successfully
+
+2013-08-27@21:08:04: Posted IP and Log File Successfully
+
+2013-08-27@21:28:16: Posted IP and Log File Successfully
+
+2013-08-27@21:36:16: Posted IP and Log File Successfully
+
+2013-08-27@21:40:57: Posted IP and Log File Successfully
+
+2013-08-27@21:40:57: Posted IP and Log File Successfully
+
+2013-08-27@21:44:18: Posted IP and Log File Successfully
+
+2013-08-27@21:47:03: Posted IP and Log File Successfully
+
+2013-08-27@21:49:04: Posted IP and Log File Successfully
+2013-08-27@21:51:42: IP Post Error: Verification failure.
+
+2013-08-27@21:54:54: Posted IP and Log File Successfully
+
+2013-08-27@21:54:58: Posted IP and Log File Successfully
+
+2013-08-28@12:44:42: Posted IP and Log File Successfully
+
+2013-08-28@12:48:18: Posted IP and Log File Successfully
+test
+2013-08-28@12:52:22: Posted IP and Log File Successfully
+2013-08-28@13:34:37: IP Post Error: likely not connected to the internet
+
+2013-08-28@13:42:23: Posted IP and Log File Successfully
+2013-08-28@17:54:41: IP Post Error: likely not connected to the internet
+2013-08-28@17:54:40: IP Post Error: likely not connected to the internet
+
+2013-08-29@11:45:30: Posted IP and Log File Successfully
+
+2013-08-29@13:52:08: Posted IP and Log File Successfully
+
+2013-08-29@13:51:39: Posted IP and Log File Successfully
+2013-08-29@15:40:30: Auto-updating kiosk code
+2013-08-29@15:49:50: Auto-updating kiosk code
+2013-08-29@16:04:38: IP Post Error: likely not connected to the internet
+2013-08-29@16:29:55: Auto-updating kiosk code
+2013-08-29@16:40:35: Auto-updating kiosk code
+
+2013-08-29@16:04:41: Posted IP and Log File Successfully
+2013-08-29@19:56:15: Auto-updating kiosk code
+2013-08-29@20:00:40: Auto-updating kiosk code
+2013-08-29@20:04:56: Auto-updating kiosk code
+2013-08-29@20:18:05: Auto-updating kiosk code
+2013-08-29@20:25:48: Auto-updating kiosk code
+2013-08-29@20:44:12: Auto-updating kiosk code
+2013-08-29@20:51:08: Auto-updating kiosk code
+2013-08-29@20:52:20: Auto-updating kiosk code
+2013-08-29@20:56:46: Auto-updating kiosk code
+2013-08-29@21:01:04: Auto-updating kiosk code
+2013-08-29@21:11:34: Auto-updating kiosk code
+2013-08-29@21:13:29: Auto-updating kiosk code
+2013-08-30@10:12:38: Auto-updating kiosk code
+
+2013-08-30@10:17:57: Posted IP and Log File Successfully
+
+2013-08-30@10:23:27: Posted IP and Log File Successfully
+2013-08-30@10:23:24: IP Post Error: likely not connected to the internet
+
+2013-09-09@11:25:58: Posted IP and Log File Successfully
+2013-08-30@10:23:24: IP Post Error: likely not connected to the internet
+
+2013-08-30@10:23:29: Posted IP and Log File Successfully
+2013-08-30@10:23:27: IP Post Error: likely not connected to the internet
+2013-08-30@10:23:22: IP Post Error: likely not connected to the internet
+2013-08-30@10:23:26: IP Post Error: likely not connected to the internet
+2013-08-30@10:23:23: IP Post Error: likely not connected to the internet
+2013-08-30@10:23:24: IP Post Error: likely not connected to the internet
+2013-08-30@10:23:23: IP Post Error: likely not connected to the internet
+2013-08-30@10:23:23: IP Post Error: likely not connected to the internet
+2013-08-30@10:23:24: IP Post Error: likely not connected to the internet
+2013-08-30@10:23:24: IP Post Error: likely not connected to the internet
+2013-08-30@10:23:24: IP Post Error: likely not connected to the internet
+2013-08-30@10:23:23: IP Post Error: likely not connected to the internet
+
+2013-08-30@10:23:28: Posted IP and Log File Successfully
