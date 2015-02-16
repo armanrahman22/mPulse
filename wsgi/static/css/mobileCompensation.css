@@ -1,0 +1,16 @@
+/* Big Screens */
+.smallScreen{
+    display:none;
+}
+.bigScreen{
+    display:inherit;
+}
+/* Small Screens */
+@media (max-width: 979px) {
+    .smallScreen{
+      display:inherit;
+    }
+    .bigScreen{
+      display:none;
+    }
+  }

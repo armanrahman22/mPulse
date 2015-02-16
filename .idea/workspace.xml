@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="158189ae-646e-44ad-9554-5e83950f923c" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\manage.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\mpulseData" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\mpulse\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\mpulse\settings.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\mpulse\urls.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\mpulse\wsgi.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\mpulse_site\__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\mpulse_site\admin.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\mpulse_site\models.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\mpulse_site\tests.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\mpulse_site\urls.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\mpulse_site\util.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\mpulse_site\views.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\css\base.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\css\changelists.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\css\dashboard.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\css\forms.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\css\ie.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\css\login.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\css\rtl.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\css\widgets.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\changelist-bg.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\changelist-bg_rtl.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\chooser-bg.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\chooser_stacked-bg.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\default-bg-reverse.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\default-bg.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\deleted-overlay.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\gis\move_vertex_off.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\gis\move_vertex_on.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\icon-no.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\icon-unknown.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\icon-yes.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\icon_addlink.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\icon_alert.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\icon_calendar.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\icon_changelink.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\icon_clock.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\icon_deletelink.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\icon_error.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\icon_searchbox.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\icon_success.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\inline-delete-8bit.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\inline-delete.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\inline-restore-8bit.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\inline-restore.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\inline-splitter-bg.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\nav-bg-grabber.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\nav-bg-reverse.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\nav-bg-selected.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\nav-bg.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\selector-icons.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\selector-search.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\sorting-icons.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\tool-left.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\tool-left_over.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\tool-right.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\tool-right_over.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\tooltag-add.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\tooltag-add_over.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\tooltag-arrowright.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\img\tooltag-arrowright_over.gif" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\LICENSE-JQUERY.txt" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\SelectBox.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\SelectFilter2.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\actions.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\actions.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\admin\DateTimeShortcuts.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\admin\RelatedObjectLookups.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\admin\ordering.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\calendar.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\collapse.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\collapse.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\compress.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\core.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\getElementsBySelector.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\inlines.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\inlines.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\jquery.init.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\jquery.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\jquery.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\prepopulate.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\prepopulate.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\timeparse.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\admin\js\urlify.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\css\bootstrap-responsive.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\css\bootstrap-responsive.min.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\css\bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\css\bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\css\jquery.jqplot.min.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\css\lightbox.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\img\glyphicons-halflings-white.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\img\glyphicons-halflings.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\img\overlay.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\img\pieChart.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\js\bootstrap.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\js\bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\js\excanvas.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\js\jquery-1.8.3.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\static\js\jquery.jqplot.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\templates\base.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\templates\createAccount.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\templates\editAccount.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\templates\help.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\templates\index.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\templates\kiosk_list_XML.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\templates\kiosks.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\templates\lineChart.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\templates\login.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\templates\manage.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\templates\password_reset.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\templates\password_reset_complete.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\templates\password_reset_confirm.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\templates\password_reset_done.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\templates\profile.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\templates\registration\password_reset_email.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\templates\registration\password_reset_subject.txt" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\templates\session.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\templates\template.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\templates\test.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\todo.txt" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\django\mpulse\uploads\sessions\maby\2013-06-03 14_22_02-05_00\cover.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Arman\Desktop\mPulse\mpulse\wsgi.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mpulse/settings.py" afterPath="$PROJECT_DIR$/mpulse/settings.py" />
+    </list>
+    <ignored path="mPulse.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="mPulse" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="setup.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/setup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="38" selection-start="619" selection-end="619" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="629">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mpulse/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="21" column="0" selection-start="549" selection-end="549" vertical-scroll-proportion="0.3988827" vertical-offset="0" max-vertical-offset="3434">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="manage.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="0" selection-start="249" selection-end="249" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/wsgi.py" />
+        <option value="$PROJECT_DIR$/mpulse/settings.py" />
+        <option value="$PROJECT_DIR$/mpulse/wsgi.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1912" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mPulse" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="recentsLimit" value="5" />
+  </component>
+  <component name="RunManager" selected="Django server.mPulse">
+    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="mPulse" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method />
+    </configuration>
+    <configuration default="false" name="mPulse" type="Python.DjangoServer" factoryName="Django server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="mPulse" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Django server.mPulse" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="158189ae-646e-44ad-9554-5e83950f923c" name="Default" comment="" />
+      <created>1424055698131</created>
+      <updated>1424055698131</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="249" selection-end="249" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="38" selection-start="619" selection-end="619" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="629">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mpulse/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="895">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mpulse/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="0" selection-start="549" selection-end="549" vertical-scroll-proportion="0.3988827" vertical-offset="0" max-vertical-offset="3434">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+

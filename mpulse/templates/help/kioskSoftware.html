@@ -1,0 +1,700 @@
+<div class="tabbable tabs-left">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#generalSoftware" data-toggle="tab">General</a></li>
+      <li><a href="#install" data-toggle="tab">Installation</a></li>
+      <li><a href="#settings" data-toggle="tab">Settings</a></li>
+      <li><a href="#management" data-toggle="tab">Remote Management</a></li>
+      <li><a href="#serverStructure" data-toggle="tab">Server Structure</a></li>
+      <li><a href="#code" data-toggle="tab">Code.py</a></li>
+      <li><a href="#utils" data-toggle="tab">Utils.py</a></li>
+      <li><a href="#otherFiles" data-toggle="tab">Other Files</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="generalSoftware">
+        <h3>General</h3>
+        <p>
+        The software for an M-Pulse kiosk consists of 2 basic components: a set of scripts for remote management of the kiosk and a python 
+        web server that controls the hardware, reads inputs, and produces graphical output for viewing in a web browser. 
+        </p>
+      </div>
+      <div class="tab-pane" id="install">
+        <h3>Installation Instructions</h3>
+        <ol>
+            <li>Install the Raspian Wheezy OS on your Raspberry Pi (this may work on other operating systems, but it's only been tested on Wheezy)</li>
+            <li>Ensure your Raspberry Pi is connected to the Internet</li>
+            <li>Run the following commands at the Raspberry Pi terminal to update software and set the time<br />
+            <ul>
+                <li>sudo apt-get update</li>
+                <li>sudo apt-get upgrade</li>
+                <li>sudo dpkg-reconfigure tzdata</li>
+            </ul>
+            </li>
+            <li><a href="{% url 'registerKiosk' %}">Register your kiosk in order to make use of remote management and storage from this website</a></li>
+            <li><a href="{% url 'downloadPrivateFile' 'installKiosk.tar.gz' %}">Download Kiosk Files Onto Raspberry Pi</a></li>
+            <li>CD to the location of the zipped install kiosk file</li>
+            <li>Run the following commands at the terminal to install<br />
+            <ul>
+                <li>tar -xvzf installKiosk.tar.gz</li>
+                <li>cd installKiosk</li>
+                <li>chmod +x install.sh</li>
+                <li>sudo ./install.sh [your username on raspi] [kiosk name] [kiosk registration code] (ex: sudo ./install.sh pi raspi1 AB60045)</li>
+            </ul>
+            </li>
+            <li>If you are on a network that requires login before an IP address is given, and you want the Raspberry Pi to post its IP address whenever you log in, add the line 'cd /usr/local/kiosk  && ./postIP.sh' to /home/[username on raspi]/.bash_profile
+                (This is not necessary for the auto-login kiosk user, regardless of Internet configuration)</li>
+            <li>Update the settings file (/usr/local/kiosk/webpy/settings.py) as necessary for your installation: see <b>Settings</b></li>
+            <li>To set the kiosk to login and startup automatically, open the file /etc/lightdm/lightdm.conf and modify/add the following lines to look like this (the lines are towards the middle of the file):
+                <ul>
+                    <li>autologin-user=kiosk</li>
+                    <li>autologin-user-timeout=0</li>
+                    <li>autologin-session=kiosk</li>
+                </ul>
+                (To quit out of the X-server to login as another user, press ctrl+alt+delete)
+            </li>
+        </ol>
+      </div>
+      <div class="tab-pane" id="settings">
+        <h3>Settings</h3>
+        The installation-specific settings file is located at /usr/local/kiosk/webpy/settings.py and contains the following variables.
+        Most installations using an M-Pulse shield will not need to change the majority of these settings.<br />
+        <h4>General Variables</h4>
+        <table class="table">
+            <th>Variable Name</th><th>Description</th><th>Default Value</th>
+            <tr><td>mpulseBaseURL</td><td>The base URL that session data is posted to for emailing and storage</td><td></td></tr>
+            <tr><td>GPIO_mode</td><td>The GPIO pin-numbering mode ('BOARD' or 'BCM')</td><td>'BCM'</td></tr>
+            <tr><td>sessionDataPath</td><td>The path to a file where temperary session data should be stored until posted to the server or discarded</td><td>'sessionData.json'</td></tr>
+            <!--
+            <tr><td>ecgLightPin</td><td>The pin controlling the lights for the ECG panel</td><td>18</td></tr>
+            <tr><td>doorMonitorPin</td><td>The pin indicatin if someone is in the kiosk</td><td>22</td></tr>
+            -->
+            <tr><td>ecgMonitorPin</td><td>The pin indicating if someone is using the ECG</td><td>25</td></tr>
+            <tr><td>blinkControlsList</td><td>List of pins to be initialized as blinkable</td><td>[]</td></tr>
+            <tr><td>outputs</td><td>List of GPIO pins to be configured as outputs (non-I/O expander)</td><td>[]</td></tr>
+            <tr><td>inputs</td><td>List of GPIO pins to be configured as inputs (non-ADC or I/O expander)</td><td>[doorMonitorPin,ecgMonitorPin]</td></tr>
+            <tr><td>ecgInputPin</td><td>ECG input pin on the ADC</td><td>7</td></tr>
+        </table>
+        <h4>ADC and I/O Extender</h4>
+        <table class='table'>
+            <th>Variable Name</th><th>Description</th><th>Default Value</th>
+            <tr><td>ADCInputs</td><td>Dictionary of inputs on the ADC as 'name': pin# pairs</td><td>{'ecg':ecgInputPin, 'scale1':scaleInputPin1, 'scale2':scaleInputPin2, 'scale3':scaleInputPin3, 'scale4':scaleInputPin4}</td></tr>
+            <tr><td>ADCConnected</td><td>Toggle whether to use an ADC on the Raspberry Pi's SPI interface</td><td>True</td></tr>
+            <tr><td>ADCCE</td><td>The ADC Chip Enable line (0 or 1) on the Raspberry Pi</td><td>0</td></tr>
+            <tr><td>IOConnected</td><td>Toggle whether to use an I/O Expander on the Raspberry Pi's SPI interface</td><td>True</td></tr>
+            <tr><td>IOCE</td><td>The I/O Expander Chip Enable line (0 or 1) on the Raspberry Pi</td><td>1</td></tr>
+            <tr><td>IOADDR</td><td>The hardware address of the I/O expander (0-7, controlled by pins 15-17 on the MCP23S17 expander)</td><td>0</td></tr>
+            <tr><td>IOCE</td><td>The I/O Expander Chip Enable line (0 or 1) on the Raspberry Pi</td><td>1</td></tr>
+        </table>
+        <h4>Scale Inputs and Calibration</h4>
+        <table class='table'>
+            <th>Variable Name</th><th>Description</th><th>Default Value</th>
+            <tr><td>scaleInputPin1</td><td>First scale input pin on the ADC</td><td>0</td></tr>
+            <tr><td>scaleInputPin2</td><td>Second scale input pin on the ADC</td><td>1</td></tr>
+            <tr><td>scaleInputPin3</td><td>Third scale input pin on the ADC</td><td>2</td></tr>
+            <tr><td>scaleInputPin4</td><td>Fourth scale input pin on the ADC</td><td>3</td></tr>
+            <tr><td>scaleLinearCoeffs</td><td>The coefficients for the best-fit equation relating the sum of the scale analog outputs to weight in lbs</td><td>[0.779566430564499,-540.890749087787]</td></tr>
+            <tr><td>scaleZero</td><td>The initial ADC sum value that is 0lbs. This value gets updated and averaged.</td><td>685</td></tr>
+            <tr><td>scaleZeroThreshold</td><td>The amount above scaleZero that is considered as someone being on the scale.</td><td>50</td></tr>
+        </table>
+        <h4>I2C / IR Temperature Sensor</h4>
+        <table class='table'>
+            <th>Variable Name</th><th>Description</th><th>Default Value</th>
+            <tr><td>sclpin</td><td>The GPIO pin used as SCL for the bit-banged I2C interface</td><td>24</td></tr>
+            <tr><td>sdapin</td><td>The GPIO pin used as SCL for the bit-banged I2C interface</td><td>23</td></tr>
+            <tr><td>IRConnected</td><td>Toggle whether to use an I2C IR Temp sensor</td><td>True</td></tr>
+            <tr><td>IRtempSMBAddress</td><td>The address of the IR temp sensor on the I2C bus</td><td>0x5a</td></tr>
+        </table>
+        <h4>I/O Expander Configuration</h4>
+        <table class='table'>
+            <th>Variable Name</th><th>Description</th><th>Default Value</th>
+            <tr><td>IOADIR</td><td>The direction of the 8 I/O pins on the A block. 1 is input, 0 is output</td><td>0xFF</td></tr>
+            <tr><td>IOBDIR</td><td>The direction of the 8 I/O pins on the B block. 1 is input, 0 is output</td><td>0xFF</td></tr>
+            <tr><td>IOAPU</td><td>Configuration of pull-up resistors on the A block. 1 is enable, 0 is disable</td><td>0x00</td></tr>
+            <tr><td>IOBPU</td><td>Configuration of pull-up resistors on the B block. 1 is enable, 0 is disable</td><td>0x00</td></tr>
+            <tr><td>INTAPIN</td><td>The GPIO pin number of the block A interrup pin (INTA)</td><td>27</td></tr>
+            <tr><td>INTBPIN</td><td>The GPIO pin number of the block B interrup pin (INTB)</td><td>17</td></tr>
+            <tr><td>interruptsEnabled</td><td>Toggle whether to use interrupts on I/O expander. 1 is enable, 0 is disable. Interrupts functions are defined in /usr/local/kiosk/webpy/IOinterruptHandlers.py</td><td>0</td></tr>
+            <tr><td>IOINTENA</td><td>Enable or disable interrupts on the block A I/O pins. 1 is enable, 0 is disable</td><td>0x00</td></tr>
+            <tr><td>IOINTENB</td><td>Enable or disable interrupts on the block B I/O pins. 1 is enable, 0 is disable</td><td>0x00</td></tr>
+            <tr><td>IOINTCONA</td><td>Controls whether interrupt is on change or difference from default value for pins in A block. 1 is diff. from default, 0 is any change</td><td>0x00</td></tr>
+            <tr><td>IOINTCONB</td><td>Controls whether interrupt is on change or difference from default value for pins in B block. 1 is diff. from default, 0 is any change</td><td>0x00</td></tr>
+            <tr><td>IODEFVALA</td><td>Values to compare against in A block if INTCON is 1.</td><td>0x00</td></tr>
+            <tr><td>IODEFVALB</td><td>Values to compare against in B block if INTCON is 1.</td><td>0x00</td></tr>
+        </table>
+      </div>
+      <div class="tab-pane" id="management">
+        <h3>Remote Management</h3>
+        The kiosk software installation contains the following files used for remote management of the kiosk. Files are located at /usr/local/kiosk.<br /><br />
+        <table class='table'>
+            <th>File</th><th>Description</th>
+            <tr><td>websiteRoot.txt</td><td>Contains the root URL of this website to be used by registerKiosk.sh, postIP.sh, and updateCode.sh</td></tr>
+            <tr><td>registerKiosk.sh</td><td>Registers the kiosk with this website so that remote management can be used. Called with the registration key: ./registerKiosk.sh ABCD1234</td></tr>
+            <tr><td>postIP.sh</td><td>Posts the IP address of the kiosk to this website so that users can ssh in. Also posts the contents of the kiosk's log file and a security key.</td></tr>
+            <tr><td>startServer.sh</td><td>Starts the web.py web server on the kiosk</td></tr>
+            <tr><td>updateCode.sh</td><td>Updates the kiosk software by pulling a copy of the most recent code from this website</td></tr>
+            <tr><td>kiosk_name.txt</td><td>Contains the name of this kiosk as it will show up on this website</td></tr>
+        </table>
+      </div>
+      <div class="tab-pane" id="serverStructure">
+        <h3>Structure</h3>
+        <div id="myCarousel2" class="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
+              <li data-target="#myCarousel2" data-slide-to="1"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="item active">
+                <img src="{{ STATIC_URL }}private/serverStructureOverall.png" alt="">
+                <div class="carousel-caption">
+                  <h4>Overall Server Structure</h4>
+                </div>
+              </div>
+              <div class="item">
+                 <img src="{{ STATIC_URL }}private/serverStructureCodepy.png" alt="">
+                <div class="carousel-caption">
+                  <h4>Structure of Code.py</h4>
+                </div>
+              </div>
+            </div>
+            <a class="left carousel-control" href="#myCarousel2" data-slide="prev">&lsaquo;</a>
+            <a class="right carousel-control" href="#myCarousel2" data-slide="next">&rsaquo;</a>
+        </div>
+        <p>
+            Code.py is the heart of the web.py server that runs locally on the Raspberry Pi. Web.py is a Python web-framework similar to Django. Code.py starts a web server
+            that listens for incoming GET or POST requests. If a request comes in at a url known to the server (in the list of urls), it directs it to the appropriate 'view', which will handle
+            the request appropriately. In the case of an M-Pulse kiosk, a view may either gather data, change the state of kiosk outputs, render a GUI page, or any or all of the above.
+        </p>
+        <h4>Walkthrough Pages</h4>
+        <p>
+            The views and templates that correspond to GUI pages for the kiosk user are referred to as 'walkthrough' view or templates and have a couple of special features.
+            All walkthrough views contain a GET variable called 'quit' that defines behaviour taken when the user leaves the page. This is called from JavaScript in
+            all walkthrough templates before the page unloads.
+        </p>
+        <b>Example walkthrough view:</b><br /><br />
+        <pre>
+class Index:
+    def GET(self):
+        getInput = web.input(quit=0)
+        if (int(getInput.quit) == 1): #Quit the page	
+                #Read the person's weight and write it to file
+                GenericWorkerThread(lambda params: params[1].writeSessionValue('Weight',
+                        params[0].readScale()),[control,dataFile]).start()
+
+                return None
+        else: #Load the page
+                #Reset session values when walkthrough starts
+                dataFile.clearValues()	
+                
+                #Reset controls
+                control.reset()
+                
+                #Render the page
+                return render.index()
+        </pre>
+        <b>Example template JavaScript call: </b><br /><br />
+        <pre>
+&lt;script type="text/javascript"&gt;
+    //Cleanup for when page is left
+    window.onbeforeunload = function() { 
+        jQuery.ajax({
+            type: "GET",
+            url: '/index/?quit=1',
+            async: false,
+        });
+    };
+&lt;/script&gt;
+        </pre>
+      </div>
+      <div class="tab-pane" id="code">
+        <h3>Views</h3>
+        <table class='table'>
+            <th>View</th><th>Description</th>
+            <tr><td>Index</td><td>Clears old session data, resets the kiosk, and loads the waiting page. When the 'quit' GET variable is set to 1, takes and saves weight.</td></tr>
+            <tr><td>Restart</td><td>Clears old session data, resets the kiosk including stopping the ECG, and loads the waiting page.</td></tr>
+            <tr><td>DoorMonitor</td><td>Calls control.waitForDoor() and hangs until that returns. Used to monitor when someone enters the kiosk and triggers the door monitor circuit.</td></tr>
+            <tr><td>BlinkControl</td><td>Changes the blink rate on a given blink control. GET variables 'pin' and 'sec' control which blink control and the rate.</td></tr>
+            <tr><td>OutputControl</td><td>Sets an output pin given by the GET variable 'pin' to the value given by 'val'. Controls GPIO pins based on their numbers and I/O expander pins with their block letter followed by their number. Ex: A3.</td></tr>
+            <tr><td>GPIODigitalRead</td><td>Returns the state of the digital pin given by the GET variable 'pin'. Can be used for both GPIO pins and I/O expander pins like OutputControl.</td></tr>
+            <tr><td>GPIOAnalogRead</td><td>Returns the state of an analog pin on the ADC. Pin number given by the 'adcnum' GET variable.</td></tr>
+            <tr><td>ReadTemperature</td><td>Returns an object temperature reading from the IR temperature sensor. Will return the ambient temperature if the 'ambient' GET variable is set to 1. If 'ambient' is not set, also stores the temperature reading in the temporary session data file.</td></tr>
+            <tr><td>ReadECG</td><td>Takes a set of readings from the ECG. If the 'started' GET variable is 0, returns whether the ECG electrodes are still in use. If they aren't, it returns 'Done'. If they are, stores the ECG reading in the session data file and returns the reading.</td></tr>
+            <tr><td>ReadScale</td><td>Takes a reading from the scale, stores it in the session data file if the 'store' GET variable is set to 1, and returns it.</td></tr>
+            <tr><td>ReadRawScale</td><td>Returns control.readRawScale(), which is a list of the 4 scale inputs' voltage readings and their sum.</td></tr>
+            <tr><td>ECG</td><td>When the 'quit' GET variable is 0: starts the ECG lights, starts the ECG reading loop and renders the ECG page. When 'quit' is 1: turns off the ECG lights, stops the ECG read loop and processes the ECG data.</td></tr>
+            <tr><td>TemperatureHeight</td><td>Renders the Temperature / Height page</td></tr>
+            <tr><td>Results</td><td>Loads the stored session data and renders a results page to display it.</td></tr>
+            <tr><td>PostSession</td><td>Posts session data to this website to be emailed or saved.</td></tr>
+            <tr><td>Shutdown</td><td>Closes the session data file, shuts down the GPIO and stops the web server.</td></tr>
+        </table>
+        <h3>Templates</h3>
+        <table class='table'>
+            <th>Template</th><th>Description</th>
+            <tr><td>base.html</td><td>The wrapper template for all of the other templates. Contains the menu and CSS and JavaScript imports.</td></tr>
+            <tr><td>index.html</td><td>Loads a page that waits until someone enters the kiosk and triggers the door monitor circuit.</td></tr>
+            <tr><td>ecg.html</td><td>Contains instructions and JavaScript graphing functionality for the live ECG reading.</td></tr>
+            <tr><td>temperatureheight.html</td><td>Contains instructions and JavaScript live update of temperature and height readings.</td></tr>
+            <tr><td>results.html</td><td>Renders the session data and provides options to email or save the data.</td></tr>
+            <tr><td>endwalkthrough.html</td><td>Displays either a success (or failure) page if user elects to email / save their session data.</td></tr>
+        </table>
+      </div>
+      <div class="tab-pane" id="utils">
+        <h3>Control Class</h3>
+        <p>This class controls the interface between the hardware and the software.</p>
+        <table class='table'>
+            <th>Function</th><th>Parameters</th><th>Description</th>
+            <tr>
+                <td>__init__</td>
+                <td><i>GPIO</i> - the GPIO object <br />
+                    <i>settings</i> - the imported settings file
+                </td>
+                <td>
+                    Sets initial variables based on the settings file
+                </td>
+            </tr>
+            <tr>
+                <td>gpioStartup</td>
+                <td></td>
+                <td>
+                    Initialized GPIO variables including outputs, inputs, blinkControls, interrupts, SPI, I2C, the ADC, and the I/O expander.
+                </td>
+            </tr>
+            <tr>
+                <td>gpioShutdown</td>
+                <td></td>
+                <td>
+                    Kills all blinkControl objects, turns off outputs<!--, sets the doorMonitor event-->, and calls GPIO.cleanup()
+                </td>
+            </tr>
+            <tr>
+                <td>reset</td>
+                <td></td>
+                <td>
+                    Resets blink controls and the ecgReader object and zeros the scale.
+                </td>
+            </tr>
+            <tr class='tableDivider'><td> </td><td> </td><td></td></tr>
+            <!--
+            <tr>
+                <td>doorMonitorTrigger</td>
+                <td><i>GPIO</i> - the channel that triggered the interrupt
+                </td>
+                <td>
+                    Function that is called on an interrupt on the doorMonitor pin. Sets the doorMonitor event, indicating that someone has entered the kiosk.
+                </td>
+            </tr>
+            -->
+            <tr>
+                <td>setECGLight</td>
+                <td><i>GPIO</i> - 0 for always on, -1 for always off, or number of seconds between blinks if the light is a blinkControl object.</td>
+                <td>
+                    Sets the ECG light to blink at the given value. If the light is not in blink controls, sets the output to LOW if val = -1 and HIGH if val = 0.
+                </td>
+            </tr>
+            <tr>
+                <td>waitForDoor</td>
+                <td></td>
+                <td>
+                    Hangs until the value on the scale inputs passes the threshold given in settings
+                </td>
+            </tr>
+            <tr>
+                <td>checkECGDown</td>
+                <td></td>
+                <td>
+                   Returns the status of the GPIO input pin designated as the ECG monitor pin.
+                </td>
+            </tr>
+            <tr class='tableDivider'><td><b>I/O Methods</b></td><td> </td><td></td></tr>
+            <tr>
+                <td>setOutput</td>
+                <td><i>pin</i> - the GPIO pin to set the value of <br />
+                    <i>val</i> - the value to set the pin to (in [0,1])
+                </td>
+                <td>
+                    Sets the value of the given GPIO pin.
+                </td>
+            </tr>
+            <tr>
+                <td>getDigitalInput</td>
+                <td><i>pin</i> - the pin to read the state of
+                </td>
+                <td>
+                    Returns the state (1 or 0) of the given digital pin on the GPIO
+                </td>
+            </tr>
+            <tr>
+                <td>getAnalogInput</td>
+                <td><i>adcnum</i> - the number of the input on the ADC to read from (in [0,7])
+                </td>
+                <td>
+                    Returns the analog value of the pin from the ADC in [0,1023]
+                </td>
+            </tr>
+            <tr>
+                <td>changeBlink</td>
+                <td><i>pin</i> - the pin the blinkControl object is controlling<br />
+                    <i>sec</i> - the new blink rate
+                </td>
+                <td>
+                    Changes the blink rate on a blinkControl object on the given pin.
+                </td>
+            </tr>
+            <tr>
+                <td>readADC</td>
+                <td><i>adcnum</i> - the number of the input on the ADC to read from (in [0,7])
+                </td>
+                <td>
+                    Returns the analog value of the pin from the ADC in [0,1023]
+                </td>
+            </tr>
+            <tr class='tableDivider'><td><b>I/O Expander Methods</b></td><td> </td><td></td></tr>
+            <tr>
+                <td>writeIORegisterByte</td>
+                <td><i>addr</i> - the address of the register to write to on the I/O expander<br />
+                    <i>val</i> - the byte value to write to the register
+                </td>
+                <td>
+                    Writes the given value to the given register address on the I/O expander.
+                </td>
+            </tr>
+             <tr>
+                <td>readIORegisterByte</td>
+                <td><i>addr</i> - the address of the register to read from on the I/O expander
+                </td>
+                <td>
+                    Reads the current byte value of the register on the I/O expander with the given address.
+                </td>
+            </tr>
+            <tr>
+                <td>readIO</td>
+                <td><i>block</i> - the I/O expander block to read from ('A' or 'B')<br />
+                    <i>ionum</i> - the pin on the block to read from (in [0,7])
+                </td>
+                <td>
+                    Reads the value on the given pin on the I/O expander.
+                </td>
+            </tr>
+            <tr>
+                <td>ioIsOutput</td>
+                <td><i>block</i> - the I/O expander block to check ('A' or 'B')<br />
+                    <i>ionum</i> - the pin on the block to check
+                </td>
+                <td>
+                    Checks if the given pin on the I/O expander is designated as an output in the settings file.
+                </td>
+            </tr>
+            <tr>
+                <td>writeIO</td>
+                <td><i>block</i> - the I/O expander block to write to ('A' or 'B')<br />
+                    <i>ionum</i> - the pin on the block to write to (in [0,7])<br />
+                    <i>val</i> - the value to write (in [0,1])
+                </td>
+                <td>
+                    Sets an output pin on the I/O expander to the given value.
+                </td>
+            </tr>
+            <tr class='tableDivider'><td><b>ECG Methods</b></td><td> </td><td></td></tr>
+            <tr>
+                <td>startECG</td>
+                <td></td>
+                <td>
+                    Starts the ECG read loop in the ecgReader object. Returns false if no ecgReader was initialized.
+                </td>
+            </tr>
+            <tr>
+                <td>readECG</td>
+                <td><i>n</i> - the maximum number of readings to return from the ECG read loop.
+                </td>
+                <td>
+                    Starts the ECG read loop in the ecgReader object. Returns false if no ecgReader was initialized.
+                </td>
+            </tr>
+            <tr>
+                <td>stopECG</td>
+                <td></td>
+                <td>
+                    Pauses the ECG read loop in the ecgReader object. Returns false if no ecgReader was initialized.
+                </td>
+            </tr>
+            <tr class='tableDivider'><td><b>Scale Methods</b></td><td> </td><td></td></tr>
+            <tr>
+                <td>getWeight</td>
+                <td></td>
+                <td>
+                    Returns a single reading from an attached scale in pounds. Returns -1 if no scale is connected. <b>Called from readScale.</b>
+                </td>
+            </tr>
+            <tr>
+                <td>readScale</td>
+                <td></td>
+                <td>
+                    Sets the scale equation coefficients based on scale zeroing, then takes an average of 6 readings over 3 seconds, discarding outliers, and returns it.
+                </td>
+            </tr>
+            <tr>
+                <td>zeroScale</td>
+                <td></td>
+                <td>
+                    Dynamically sets the scale zero voltage. Takes ten readings and sets the zero as a weighted average, weighing more recent zeroings more heavily.
+                </td>
+            </tr>
+            <tr>
+                <td>readRawScale</td>
+                <td></td>
+                <td>
+                    Returns a list of raw voltage readings from the scale inputs and their sum.
+                </td>
+            </tr>
+            <tr class='tableDivider'><td><b>Temperature Methods</b></td><td> </td><td></td></tr>
+            <tr>
+                <td>readTemperature</td>
+                <td><i>ambient=False</i> - if set to True, takes and returns the ambient temperature (as opposed to the object temperature)</td>
+                <td>
+                    Reads the temperature from the temperature sensor. Tries 5 times to get an error-free reading before returning -1. 
+                </td>
+            </tr>
+        </table>
+        <h3>BlinkControl Threaded Class</h3>
+        <p>This class controls a background thread that can blink lights attached on a digital output pin.</p>
+        <table class='table'>
+            <th>Function</th><th>Parameters</th><th>Description</th>
+            <tr>
+                <td>__init__</td>
+                <td><i>pin</i> - the GPIO output pin to control <br />
+                    <i>sec</i> - initial blink rate
+                    <i>GPIO</i> - the GPIO object 
+                </td>
+                <td>
+                    Sets up the GPIO pin as an output and sets initial blink rate variable.   
+                </td>
+            </tr>
+            <tr>
+                <td>run</td>
+                <td></td>
+                <td>
+                    Starts the pin blinking by running a loop that flips its state every sec seconds or when the rate is changed. Called with the thread's .start() method
+                </td>
+            </tr>
+            <tr>
+                <td>setSec</td>
+                <td><i>sec</i> - the rate to change the blink to<br />
+                </td>
+                <td>
+                    Changes the blink rate on the pin to sec seconds.  
+                </td>
+            </tr>
+            <tr>
+                <td>kill</td>
+                <td></td>
+                <td>
+                    Permanently stops the thread.
+                </td>
+            </tr>
+        </table>
+        <h3>ECGReader Threaded Class</h3>
+        <p>This class controls a read loop that continuously takes and stores ECG readings from the ADC.</p>
+        <table class='table'>
+            <th>Function</th><th>Parameters</th><th>Description</th>
+            <tr>
+                <td>__init__</td>
+                <td><i>getValue</i>- the function to be used to get an ECG value <br />
+                    <i>sec</i> - The time to wait between readings
+                </td>
+                <td>
+                    Sets the thread's data acquisition function and rate   
+                </td>
+            </tr>
+            <tr>
+                <td>run</td>
+                <td></td>
+                <td>
+                    Starts the thread. Called with the thread's .start() method.
+                </td>
+            </tr>
+            <tr>
+                <td>unpause</td>
+                <td></td>
+                <td>
+                    Unpauses the read loop -> starts to gather and store ECG data
+                </td>
+            </tr>
+            <tr>
+                <td>getReading</td>
+                <td><i>n</i>- the maximum number of readings to return at once
+                </td>
+                <td>
+                    Returns up to n readings from the ECG read loop storage. If there are less than n readings available, returns all of the available readings.
+                </td>
+            </tr>
+            <tr>
+                <td>pause</td>
+                <td></td>
+                <td>
+                    Clears existing stored data and pauses the read loop.
+                </td>
+            </tr>
+            <tr>
+                <td>kill</td>
+                <td></td>
+                <td>
+                    Permanently stops the thread.
+                </td>
+            </tr>
+        </table>
+        <h3>DataFile Class</h3>
+        <p>Provides methods to interface with a JSON session data file. This class is used to control access to the temporary storage of session data.</p>
+        <table class='table'>
+            <th>Function</th><th>Parameters</th><th>Description</th>
+            <tr>
+                <td>__init__</td>
+                <td><i>filePath</i> - the path to a JSON file to store the data in
+                </td>
+                <td>
+                    Initializes the class, setting the filePath variable and creating a lock.
+                </td>
+            </tr>
+            <tr>
+                <td>open</td>
+                <td></td>
+                <td>
+                   Opens the file and reads in its data to the class object.  
+                </td>
+            </tr>
+            <tr>
+                <td>writeOut</td>
+                <td><i>path=None</i> - if specified, data will be written out to the given file. If not specified, data will be written out to originally specified file.
+                </td>
+                <td>
+                    Writes the current data from the object out to a JSON file.   
+                </td>
+            </tr>
+            <tr>
+                <td>close</td>
+                <td></td>
+                <td>
+                    Closes the file.
+                </td>
+            </tr>
+            <tr>
+                <td>writeSessionValue</td>
+                <td><i>name</i> - the name of the session value to write to <br />
+                    <i>val</i> - the value to write
+                </td>
+                <td>
+                    Sets the session value given by name to the value given by value in the object's data structure. 
+                </td>
+            </tr>
+            <tr>
+                <td>extendGraphValues</td>
+                <td><i>name</i> - the name of the graph values list to extend <br />
+                    <i>maxLength</i> - the maximum length of the graph values list
+                    <i>valList</i> - the list of values to add 
+                </td>
+                <td>
+                    Extends the list of graph values by the given name by the given values up to maxLength. Removes old values to add new ones to the end of the list.  
+                </td>
+            </tr>
+            <tr>
+                <td>writeGraphValues</td>
+                <td><i>name</i> - the name of the graph data to write over <br />
+                    <i>values</i> - the values to write
+                </td>
+                <td>
+                    Overwrites a set of graph values given by name with the given values.   
+                </td>
+            </tr>
+            <tr>
+                <td>clearGraphValues</td>
+                <td><i>name</i> - the name of the graph data to clean
+                </td>
+                <td>
+                    Clears a set of graph data, replacing it with an empty list.
+                </td>
+            </tr>
+            <tr>
+                <td>getData</td>
+                <td></td>
+                <td>
+                    Returns a read-out of the current data stored by the object in a list-style object.  
+                </td>
+            </tr>
+            <tr>
+                <td>clearValues</td>
+                <td></td>
+                <td>
+                    Clears all sessionData variables and graphData variables.  
+                </td>
+            </tr>
+            <tr>
+                <td>processECGData</td>
+                <td></td>
+                <td>
+                    Filters ECG data and gets BPM, writing it to the 'Pulse Rate' sessionData variable.
+                </td>
+            </tr>
+        </table>
+        <h3>GenericWorkerThread Threaded Class</h3>
+        <p>This class starts a background thread that runs the given function with the given parameters.</p>
+        <table class='table'>
+            <th>Function</th><th>Parameters</th><th>Description</th>
+            <tr>
+                <td>__init__</td>
+                <td><i>function</i>- the function the thread should run <br />
+                    <i>params</i> - the parameters to feed to the function
+                </td>
+                <td>
+                    Sets the thread's function and parameters        
+                </td>
+            </tr>
+            <tr>
+                <td>run</td>
+                <td>
+                </td>
+                <td>
+                    Runs the function with the given parameters. Called with the thread's .run() method.      
+                </td>
+            </tr>
+        </table>
+        <h3>Other Functions</h3>
+        <table class='table'>
+            <th>Function</th><th>Parameters</th><th>Description</th>
+            <tr>
+                <td>getBPMfromECG</td>
+                <td>
+                    <i>timeRange</i> - The range of time the data is taken over
+                    <i>data</i> - ECG baseline-stabilized voltage values
+                </td>
+                <td>Returns the beats per minute in a section of ECG data.</td>
+            </tr>
+            <tr>
+                <td>filterECG</td>
+                <td>
+                    <i>graphData</i> - Raw ECG data in a list of [milliseconds,voltage] pairs
+                </td>
+                <td>Baseline-stabilizes raw ecg data and converts milliseconds to seconds. Returns list of [seconds, voltage] pairs.</td>
+            </tr>
+            <tr>
+                <td>extendList</td>
+                <td>
+                    <i>maxLength</i> - The maximum length of the list
+                    <i>curList</i> - The current list
+                    <i>newVals</i> - The new values to append to the end of the list
+                </td>
+                <td>Extends the list curList with newVals up to maxLength - overwrites oldest values to make room for new ones.</td>
+            </tr>
+        </table>
+      </div>
+      <div class="tab-pane" id="otherFiles">
+        <h3>Other Files</h3>
+        All files are located in /usr/local/kiosk/webpy <br /><br />
+        <table class='table'>
+            <th>File/directory name</th><th>Description</th>
+            <tr><td>init.py</td><td>Initializes Control and DataFile objects (see <b>Utils.py</b>) for use by server</td></tr>
+            <tr><td>bitbangI2C.py</td><td>Bit-banged I2C interface class which can be used with any 2 GPIO pins</td></tr>
+            <tr><td>IOinterruptHandlers.py</td><td>Interrupt handlers for I/O expander interrupts. Interrupts must be enabled for these to be called (see <b>Settings</b>).</td></tr>
+            <tr><td>sessionData.json</td><td>File where temporary session data may be stored</td></tr>
+            <tr><td>static/</td><td>Location of server static files (CSS, JS, IMG)</td></tr>
+            <tr><td>templates/</td><td>Location of server template files for the GUI</td></tr>
+        </table>
+      </div>
+    </div>
+</div> <!-- /tabbable -->

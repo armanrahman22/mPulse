@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="2389975001">
+    <data-source source="LOCAL" name="Django default" uuid="22113f66-dcc1-4fe8-bc83-6e5bd3b9c0d3">
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\Arman\Desktop\mPulse\mpulseData</jdbc-url>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+

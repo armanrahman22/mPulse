@@ -1,0 +1,68 @@
+<div class="tabbable tabs-left">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#adminHelpOverview" data-toggle="tab">Overview</a></li>
+      <li><a href="#adminTools" data-toggle="tab">Tools</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="userHelpOverview">
+        <h3>Overview</h3>
+        <p>
+            In addition to providing end-users with access to their M-Pulse session data, this website also provides M-Pulse kiosk developers and administrators to some
+            remote monitoring tools for their kiosks. In order to use these tools and to store data from your kiosk online, you must first register each of your kiosks
+            with us. Upon registration, you will receive a registration key that you can enter either into the kiosk software install script or into the registerKiosk.sh script.
+            For more information on registration and installation, see the help section <b>Kiosk Hardware -> Remote Management</b>
+        </p>
+        <p>
+            The remote management tools available to developers and administrators are:
+            <ul>
+                <li>Ability to view the status of kiosks (online, offline, error) and their IP addresses</li>
+                <li>Ability to view uploaded kiosk logs</li>
+                <li>Control who can view and manage your kiosks</li>
+            </ul>
+            
+            Registering your kiosks also allows users to:
+            <ul>
+                <li>Store session data online</li>
+                <li>Email session data to themselves</li>
+                <li>Graph session data over time</li>
+            </ul>
+        </p>
+      </div>
+      <div class="tab-pane" id="adminTools">
+        <div id="adminToolsCarousel" class="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#adminToolsCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#adminToolsCarousel" data-slide-to="1"></li>
+              <li data-target="#adminToolsCarousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="item active">
+                 <img src="{{ STATIC_URL }}img/registerScreenShot.png" alt="" />
+                <div class="carousel-caption">
+                  <h4>Register Kiosk</h4>
+                  <p>Kiosks can be easily registered on the <a href="{% url 'registerKiosk' %}">register kiosk page</a>.</p>
+                </div>
+              </div>
+              <div class="item">
+                 <img src="{{ STATIC_URL }}img/manageScreenShot.png" alt="" />
+                <div class="carousel-caption" style="margin-top: 20px">
+                  <h4>Manage Kiosks</h4>
+                  <p>You can view a list of kiosks you manage and their statuses on the <a href="{% url 'manage' %}">kiosk admin page</a>. This is also where
+                  you can view kiosk logs and edit kiosks.</p>
+                </div>
+              </div>
+              <div class="item">
+                <img src="{{ STATIC_URL }}img/editKioskScreenShot.png" alt=""/>
+                <div class="carousel-caption">
+                  <h4>Edit Kiosk</h4>
+                  <p>By clicking 'Edit Kiosk' on the kiosk admin page, you can change kiosk parameters and control who has ownership of the kiosk. Kiosk
+                  owners can view and edit the kiosk on their admin page.</p>
+                </div>
+              </div>
+            </div>
+            <a class="left carousel-control" href="#adminToolsCarousel" data-slide="prev">&lsaquo;</a>
+            <a class="right carousel-control" href="#adminToolsCarousel" data-slide="next">&rsaquo;</a>
+        </div>
+      </div>
+    </div>
+</div>

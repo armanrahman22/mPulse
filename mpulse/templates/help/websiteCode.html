@@ -1,0 +1,118 @@
+<div class="tabbable tabs-left">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#websiteAdminSite" data-toggle="tab">Admin Features</a></li>
+      <li><a href="#websiteStructure" data-toggle="tab">Structure</a></li>
+      <li><a href="#websiteImprovements" data-toggle="tab">Improvements</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="websiteAdminSite">
+          <h3>Admin Site</h3>
+          <p>
+            The semi-automatically generated Django administration site can be accessed on the <a href="{% url 'admin:index' %}">Site Admin</a> page. There you can directly manage and edit objects from many of the database tables.
+            Currently you can edit groups, users, kiosks, sessions, and sites, but the ability to view and edit sessions should eventually be removed to protect user's privacy. (Removed)
+          </p>
+          <h3>Server Errors</h3>
+          <p>
+            When a user on the site gets a 500 - Internal Server Error page, this error is saved to the database, along with a full python traceback of the error and some
+            request information. These errors can be viewed and deleted on the <a href="{% url 'errorsList' %}">Server Errors</a> page.
+          </p>
+        </div>
+        <div class="tab-pane" id="websiteStructure">
+          <h3>Structure</h3>
+          <p>
+              This website is built using <a href="https://www.djangoproject.com/" target="_blank">Django</a>, a widely-used and powerful Python web framework. It has excellent documentation
+              that can be found <a href="https://docs.djangoproject.com/en/1.5/" target="_blank">here</a>.
+          </p>
+          <p>There are four basic elements to a Django website: Models, URLs, Views, and Templates. <b>Models</b> control the structure of data that is stored in the data base and allow
+          database rows to be treaded like Python objects. Here is code for the Kiosk model (found in mpulse_site/models.py) on this website:
+          <pre>
+class Kiosk(models.Model):
+    name = models.CharField(max_length=200)
+    owners = models.ManyToManyField(User)
+    registration_key = models.CharField(max_length=8)
+    is_registered = models.BooleanField(default=False)
+    ip = models.GenericIPAddressField(null=True,blank=True)
+    location = models.CharField(max_length=200,null=True,blank=True)
+    gpsLocLat = models.FloatField(null=True,blank=True)
+    gpsLocLong = models.FloatField(null=True,blank=True)
+    
+    secret_key = models.CharField(max_length=10,null=True,blank=True) #For making sure session data posted to the site is coming from a raspi
+    
+    STATUS_CHOICES = (
+        ('O', 'Online'),
+        ('E', 'Error'),
+        ('F', 'Offline'),
+    )
+    status = models.CharField(max_length=1,choices=STATUS_CHOICES,null=True,blank=True)
+    lastCheckIn = models.DateTimeField(null=True,blank=True)
+    logFile = models.FileField(upload_to=getLogFilePath,storage=fs,null=True,blank=True)
+    
+    def checkForOffline(self):
+        if self.status == 'O' and (not self.lastCheckIn or timezone.now() >= (self.lastCheckIn + datetime.timedelta(hours=3))):
+            self.status = 'F'
+    
+    def __unicode__(self):
+        return self.name+'@'+str(self.ip)
+          </pre>
+          Also in models.py are definitions of the forms to be used when creating and editing instances of models. For more information on forms, see <a href="https://docs.djangoproject.com/en/dev/topics/forms/" target="_blank">Django's documentation on forms</a>.
+          
+          </p>
+          <p>
+            <b>URL mappings</b> are found in mpulse_site/urls.py and control which view receives an incoming HTTP request. Each URL is a regular expression that is checked against the destination of
+            the request. If a URL matches, the request is sent to the corresponding view. If no URL matches, a 404 page is displayed. Here is an example URL from this site, which maps a view session request to the
+            approriate view. In this case the view is called 'session', and is the second parameter.
+            <pre>
+url(r'^session/(?P&lt;session_id&gt;[0-9]+)/$','session',name="session"),</pre>
+          </p>
+          <p>
+            After a request has been directed to a <b>view</b>, the view takes any appropriate action on the server and then returns an HTTP response object. This HTTP response can be either plaintext or
+            a rendered template. Here is the view that handles a view session request for this site:
+            <pre>
+@login_required
+def session(request,session_id):
+    session = get_object_or_404(Session,pk=session_id) #Get session by id number or raise 404 if doesn't exist
+    if session.user == request.user: #if session belongs to the current user
+        graphData = eval(session.graphData)
+        if 'ecg' in graphData:
+            ecgData = graphData['ecg']
+        else:
+            ecgData = None
+        return render_to_response('session.html',{'session':session,'sessionData':eval(session.sessionData),'ecgData':ecgData},context_instance=RequestContext(request))
+    else:
+        return HttpResponseRedirect(reverse('mpulse_site.views.login_prompt'),context_instance=RequestContext(request))
+            </pre>
+            This view first checks to make sure the requester is logged in (@login_required), then retrieves the requested session from the database, checks to make sure
+            the requesting user is the owner of the session, and returns a template rendering the data retrieved from the session object.
+          </p>
+          <p>
+            Django has its own <b>templating language</b> to handle code and variables in rendered templates. Python statements are surrounded by {% templatetag openblock %} {% templatetag closeblock %} and variables by {% templatetag openvariable %} {% templatetag closevariable %}. Variables are passed
+            in by name through the view. For example, in the previous view example of the session, the variables 'session', 'sessionData', and 'ecgData' would be available
+            to the template by those names. Here is a relevant section of the session.html template that uses those variables:
+            <pre>              
+&lt;h3&gt;M-Pulse Kiosk Session Results from {% templatetag openvariable %} session.datetime_taken|date:"D M jS, Y G:i T" {% templatetag closevariable %}&lt;/h3&gt;
+{% templatetag openblock %} for item in sessionData {% templatetag closeblock %}
+    &lt;b&gt;{% templatetag openvariable %}item.0{% templatetag closevariable %}: &lt;/b&gt;{% templatetag openvariable %}item.1{% templatetag closevariable %}{% templatetag openvariable %}item.2{% templatetag closevariable %} &lt;a href="#" class="chart-call" role="button" data-width="75%" data-height="50%" data-body="{% templatetag openblock %} url chartSessionVar {% templatetag closeblock %}?varName={% templatetag openvariable %}item.0|urlencode{% templatetag closevariable %}" title='View Graph'&gt;&lt;img src='{% templatetag openvariable %} STATIC_URL {% templatetag closevariable %}img/graphIcon.png' style='width:20px'/&gt;&lt;/a&gt;&lt;br /&gt;
+{% templatetag openblock %} endfor {% templatetag closeblock %}
+{% templatetag openblock %} if ecgData {% templatetag closeblock %}
+&lt;b&gt;ECG Graph: &lt;/b&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;div style="height:320px;width:100%;overflow-y:auto;"&gt;
+    &lt;div id="ecgChart" style="height:300px; width:200%;margin: 0 auto;"&gt;&lt;/div&gt;
+&lt;/div&gt;
+{% templatetag openblock %} endif {% templatetag closeblock %}
+            </pre>
+          </p>
+        </div>
+        <div class="tab-pane" id="websiteImprovements">
+            <h3>Improvements Still to be Made</h3>
+            <p>
+                The following are as-yet-unimplemented features that should be added to this website:
+                <ul>
+                    <li>Upgrade to a mySQL server</li>
+                    <li>Privitize and securitize data collection and storage more to meet government standards</li>
+                    <li>Add anonymous graphing functionality of mass-collected data and put results on a 'Trends' page (look at Google fusion tools)</li>
+                    <li>Add more tools for analysing ECG data -> Atrial fibrilation, potential skipped beats, etc.</li>
+                </ul>
+            </p>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<kiosks>
-     {% for kiosk in kiosks %}
-     <kiosk name="{{ kiosk.name }}" loc="{{ kiosk.location }}" lat="{{ kiosk.gpsLocLat }}" lng="{{ kiosk.gpsLocLong }}" status="{% if kiosk.status == 'O' %}Online{% elif kiosk.status == 'F' %}Offline{% elif kiosk.status == 'E' %}Not Working{% endif %}" />
-     {% endfor %}
-</kiosks>

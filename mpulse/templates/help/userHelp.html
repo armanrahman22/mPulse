@@ -1,0 +1,58 @@
+<div class="tabbable tabs-left">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#userHelpOverview" data-toggle="tab">Overview</a></li>
+      <li><a href="#sessions" data-toggle="tab">Sessions</a></li>
+      <li><a href="#data" data-toggle="tab">Global Data</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="userHelpOverview">
+        <h3>Overview</h3>
+        <p>
+            The purpose of this website is to provide M-Pulse kiosk users with a way to easily store and manage their health data. Here you can view your kiosk sessions, graph
+            long-term trends, and export session data for offline storage, printing, or sharing.
+        </p>
+      </div>
+      <div class="tab-pane" id="sessions">
+        <div id="sessionsCarousel" class="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#sessionsCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#sessionsCarousel" data-slide-to="1"></li>
+              <li data-target="#sessionsCarousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="item active">
+                 <img src="{{ STATIC_URL }}img/profileScreenShot.png" alt="" />
+                <div class="carousel-caption">
+                  <h4>View Sessions</h4>
+                  <p>Sessions can be viewed from your <a href="{% url 'profile' %}">profile page</a>.</p>
+                </div>
+              </div>
+              <div class="item">
+                 <img src="{{ STATIC_URL }}img/graphScreenShot.png" alt="" />
+                <div class="carousel-caption">
+                  <h4>Graph Data Over Time</h4>
+                  <p>You can view graphs of data by clicking on the <img src="{{ STATIC_URL }}img/graphIcon.png" /> icon wherever you see it.</p>
+                </div>
+              </div>
+              <div class="item">
+                <img src="{{ STATIC_URL }}img/sessionScreenShot.png" alt=""/>
+                <div class="carousel-caption">
+                  <h4>Share Sessions</h4>
+                  <p>You can export or email session data as a PDF by going to the session page and clicking Download PDF or Email PDF at the bottom of the page. You can share, save, or
+                    print these PDFs however you would like.</p>
+                </div>
+              </div>
+            </div>
+            <a class="left carousel-control" href="#sessionsCarousel" data-slide="prev">&lsaquo;</a>
+            <a class="right carousel-control" href="#sessionsCarousel" data-slide="next">&rsaquo;</a>
+        </div>
+      </div>
+      <div class="tab-pane" id="data">
+        <h3>Data Trends</h3>
+        <p>
+             Data from M-Pulse Kiosks is occasionally anonymously amassed and analyzed to produce graphs and analysis of local and global health trends.
+            These can be found on the trends page.
+        </p>
+      </div>
+    </div>
+</div>

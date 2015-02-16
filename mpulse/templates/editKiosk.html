@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block extended_title %} - Edit Kiosk{% endblock %} <!-- Extention of title - Starts with M-PULSE -->
+
+{% block content %} <!-- Content for the page -->
+{% if message %}
+        <div class="alert fade in alert-{{message_class}}">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {% autoescape off %}
+                {{ message }}
+            {% endautoescape %}
+        </div>
+{% endif %}
+<h3>Edit Kiosk</h3>
+<form action="{% url 'editKiosk' kiosk.pk %}" method="post" class="form-horizontal">
+    {% csrf_token %}
+    <fieldset>
+        {% for field in registrationForm %}
+        <div class="control-group {% if field.errors %}error{% endif %}">
+            <label class="control-label" for="{{ field.html_name }}" style="text-align:left;font-weight:bold;">{{ field.label }}</label>
+            <div class="controls">
+                {{ field }}
+                {% if field.errors %}
+                    <span class="help-inline">{{ field.errors }}</span>
+                {% endif %}
+                
+            </div>
+        </div>
+        {% endfor %}
+
+    </fieldset>
+    <input type="submit" value="Edit Kiosk" class="btn btn-primary btn-medium" />
+</form>
+<hr />
+<h3>Kiosk Owners</h3>
+<table class='table'>
+<th>Name</th><th>Email</th><th></th>
+{% for owner in kiosk.owners.all %}
+    <tr>
+        <td>{{ owner.get_full_name }}</td>
+        <td>{{ owner.email }}</td>
+        <td><a href="{% url 'removeKioskOwner' kiosk.pk owner.pk %}" class='btn btn-danger' onclick="return confirm('Are you sure you wish to remove this owner?')">Remove</a></td>
+    </tr>
+{% endfor %}
+</table>
+<hr />
+<form action="{% url 'addKioskOwner' kiosk.pk %}" method="post" class="form-horizontal">
+    {% csrf_token %}
+    <b>Add Owner</b>: <input type="text" name="email" placeholder="Email Address" />
+    <input type="submit" value="Add" class="btn btn-primary btn-medium" />
+</form>
+{% endblock %}

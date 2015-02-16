@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block extended_title %} - View Kiosk Log{% endblock %} <!-- Extention of title - Starts with M-PULSE -->
+
+{% block content %} <!-- Content for the page -->
+<h3>Log for {{ kiosk.name }}</h3>
+<span style="color: #898989;">Last updated: {{ kiosk.lastCheckIn|date:"D M jS, Y G:i T" }}</span><br /><br />
+<hr style="color: #898989; margin-top: 0;" />
+{% for line in logTextLines %}
+    {% if line != '' %}
+        {{ line }}<br />
+    {% endif %}
+{% endfor %}
+
+{% endblock %}

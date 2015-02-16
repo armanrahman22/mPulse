@@ -1,0 +1,74 @@
+
+<div id="chart_div" style="width:100%;height:100%;"></div>
+
+<script>
+    window.g_title = '{{ title }}'
+    window.g_xLabel = '{{ xLabel }}'
+    window.g_yLabel = '{{ yLabel }}'
+    window.g_data = {{ data|safe }}
+</script>
+<!--<script type="text/javascript" src="https://www.google.com/jsapi"></script>-->
+<script type="text/javascript">
+        $(document).ready(function(){
+       var series = [window.g_data];
+       //var series = [['2008-09-30 4:00PM',4], ['2008-10-30 4:00PM',6.5], ['2008-11-30 4:00PM',5.7], ['2008-12-30 4:00PM',9], ['2009-01-30 4:00PM',8.2]];
+        var plot = $.jqplot ('chart_div', series,{
+            title: window.g_title,
+            axes: {
+                    xaxis: {
+                            renderer:$.jqplot.DateAxisRenderer,
+                            label:window.g_xLabel,
+                            labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+                            tickOptions:{formatString:'%b %#d, %y'},
+                            pad:0
+                    },
+                    yaxis: {
+                            label:window.g_yLabel,
+                            labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+                            tickOptions:{
+                                showMark: false
+                            },
+                            showTickMarks:false
+                            //pad:0
+                    }
+            },
+            axesDefaults: {
+                    tickOptions: {
+                            showGridline: false,
+                            showMark: true
+                    },
+                    showTickMarks: false
+            },
+            seriesDefaults: {
+                    //showMarker: false,
+                    color: '#0045CC',
+                    pointLabels: { show:true } 
+            },
+            grid: {
+                    background: '#FFFFFF',
+                    borderColor: '#FFFFFF',
+                    shadow: false
+            }
+        });
+       });
+//       $(document).ready(function(){
+//  var line1=[['2008-09-30 4:00PM',4], ['2008-10-30 4:00PM',6.5], ['2008-11-30 4:00PM',5.7], ['2008-12-30 4:00PM',9], ['2009-01-30 4:00PM',8.2]];
+//  var plot1 = $.jqplot('chart_div', [line1], {
+//    title:'Default Date Axis',
+//    axes:{xaxis:{renderer:$.jqplot.DateAxisRenderer}},
+//    series:[{lineWidth:4, markerOptions:{style:'square'}}]
+//  });
+//});
+  //google.load("visualization", "1", {packages:["corechart"], callback:drawChart});
+  //google.setOnLoadCallback(drawChart);
+  //function drawChart() {
+  //  var data = google.visualization.arrayToDataTable(window.g_data);
+  //
+  //  var options = {
+  //    title: window.g_title,
+  //  };
+  //
+  //  var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+  //  chart.draw(data, options);
+  //}
+</script>
